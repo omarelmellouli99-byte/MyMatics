@@ -32,7 +32,7 @@ export default function App() {
   useEffect(() => {
     const fetchPositions = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/positions");
+        const res = await axios.get("https://mymatics-production.up.railway.app/api/positions");
         const all = res.data;
 
         // Détecte si nouveau cycle (fichier remis à zéro)
