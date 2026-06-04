@@ -142,7 +142,7 @@ export default function App() {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${API}/api/positions`);
-        const { data, total, current: idx } = res.data;
+        const { data, total, current: idx } = res.data.data;
         if (!data || data.length === 0) return;
         if (data[0].index === 1 && data[data.length-1].index < 50) {
           setPositions([]); setTrail([]);
