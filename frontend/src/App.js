@@ -1,20 +1,34 @@
+<<<<<<< HEAD
 import { useEffect, useState, useRef } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import Plot from "react-plotly.js";
 import dpeLogo from "./assets/dpe-logo.png";
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 // ════════════════════════════════════════════════════════════
 // 📌 POUR REMPLACER LE LOGO PAR LE VRAI FICHIER :
 //   1. Place ton logo dans :     frontend/public/dpe-logo.png  (ou .svg)
 //   2. Cherche plus bas la ligne `<DpeLogo width={170} />`
 //   3. Remplace-la par :         <img src="/dpe-logo.png" alt="DPE" style={{ width: 170 }} />
 // ════════════════════════════════════════════════════════════
+<<<<<<< HEAD
  
 const API = "http://127.0.0.1:5000";
  
+=======
+
+const API = "https://mymatics-production.up.railway.app";
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 const C = {
   navy:       "#0a1733",
   navyHover:  "#152347",
@@ -33,7 +47,11 @@ const C = {
   danger:     "#dc2626",
   accent:     "#1e40af",
 };
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 const DPE_LOGO_SRC = dpeLogo;
 const DpeLogo = ({ width = 120 }) => (
   <img
@@ -47,7 +65,11 @@ const DpeLogo = ({ width = 120 }) => (
     }}
   />
 );
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 const NAV_ITEMS = [
   { id: "live",      label: "Suivi en temps réel", icon: "📡" },
   { id: "analytics", label: "Analyse historique",  icon: "📊" },
@@ -56,7 +78,11 @@ const NAV_ITEMS = [
   { id: "reports",   label: "Rapports",            icon: "📋" },
   { id: "settings",  label: "Administration",      icon: "⚙️" },
 ];
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 // ✅ FIX : ajout de fuel_rate (consommation), fuel_level reste mais sera complété
 const PARAMS = [
   { key: "temperature", label: "Température",    unit: "°C",  color: "#dc2626", icon: "🌡️" },
@@ -67,7 +93,11 @@ const PARAMS = [
   { key: "p_oil",       label: "Pression huile", unit: "bar", color: "#7c3aed", icon: "🛢️" },
   { key: "altitude",    label: "Altitude",       unit: "m",   color: "#0891b2", icon: "⛰️" },
 ];
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 const trainIcon = new L.DivIcon({
   html: `
     <div style="position:relative;width:38px;height:38px;">
@@ -78,14 +108,22 @@ const trainIcon = new L.DivIcon({
   `,
   iconSize: [38, 38], iconAnchor: [19, 19], className: ""
 });
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 function hexToRgb(hex) {
   const r = parseInt(hex.slice(1,3),16);
   const g = parseInt(hex.slice(3,5),16);
   const b = parseInt(hex.slice(5,7),16);
   return `${r},${g},${b}`;
 }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 function Sparkline({ data, color, width=110, height=22 }) {
   const vals = (data||[]).filter(v => v > 0);
   if (vals.length < 2) return <div style={{ width, height }} />;
@@ -102,13 +140,21 @@ function Sparkline({ data, color, width=110, height=22 }) {
     </svg>
   );
 }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 function RecenterMap({ position }) {
   const map = useMap();
   useEffect(() => { if (position) map.setView(position, map.getZoom()); }, [position, map]);
   return null;
 }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 function getStatus(key, val) {
   if (key === "temperature") {
     if (val > 90) return { label:"Critique", color:C.danger };
@@ -128,7 +174,11 @@ function getStatus(key, val) {
   if (key === "altitude") return { label:"GPS Actif", color:C.accent };
   return { label:"Normal", color:C.ok };
 }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 export default function App() {
   const [page, setPage]               = useState("live");
   const [positions, setPositions]     = useState([]);
@@ -137,6 +187,7 @@ export default function App() {
   const [progress, setProgress]       = useState({ current: 0, total: 0 });
   const [activeParam, setActiveParam] = useState("temperature");
   const [mapFullscreen, setMapFullscreen] = useState(false);  // ✅ Plein écran
+<<<<<<< HEAD
 
   const [chatOpen, setChatOpen]         = useState(false);
   const [chatMessages, setChatMessages] = useState([
@@ -144,6 +195,8 @@ export default function App() {
   ]);
   const [chatInput, setChatInput]       = useState("");
   const [chatLoading, setChatLoading]   = useState(false);
+=======
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 
   useEffect(() => {
     const fetchData = async () => {
@@ -165,7 +218,11 @@ export default function App() {
     const iv = setInterval(fetchData, 3000);
     return () => clearInterval(iv);
   }, []);
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
   const pct      = progress.total ? ((progress.current / progress.total) * 100).toFixed(1) : 0;
   const mapPos   = current ? [current.latitude, current.longitude] : [48.44, 1.77];
   const last10   = positions.slice(-10).reverse();
@@ -175,7 +232,11 @@ export default function App() {
   const statAvg  = vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1) : 0;
   const statMax  = vals.length ? Math.max(...vals).toFixed(1) : 0;
   const statMin  = vals.length ? Math.min(...vals).toFixed(1) : 0;
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
   const tempVals = positions.map(p => p.temperature).filter(v => v > 0);
   const tempDist = [
     { label:"< 60°C",  count: tempVals.filter(v=>v<60).length,        color:"#94a3b8" },
@@ -185,18 +246,30 @@ export default function App() {
     { label:"> 90°C",  count: tempVals.filter(v=>v>=90).length,       color:C.danger  },
   ];
   const tempTotal = tempDist.reduce((s,d)=>s+d.count,0) || 1;
+<<<<<<< HEAD
  
   const chartData = positions.filter(p => p[activeParam] > 0).sort((a,b) => a.heure.localeCompare(b.heure));
   const chartX    = chartData.map(p => p.heure.replace(' ', 'T'));
   const chartY    = chartData.map(p => p[activeParam]);
  
+=======
+
+  const chartData = positions.filter(p => p[activeParam] > 0).sort((a,b) => a.heure.localeCompare(b.heure));
+  const chartX    = chartData.map(p => p.heure.replace(' ', 'T'));
+  const chartY    = chartData.map(p => p[activeParam]);
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
   const cardStyle = {
     background: C.card,
     borderRadius: 12,
     border: `1px solid ${C.border}`,
     boxShadow: "0 1px 3px rgba(10,23,51,0.04), 0 1px 2px rgba(10,23,51,0.06)",
   };
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
   // ────── Rendu du contenu de la carte (réutilisé en plein écran) ──────
   const renderMap = (height = "100%") => current && (
     <MapContainer center={mapPos} zoom={11} style={{ height, width:"100%" }}>
@@ -218,6 +291,7 @@ export default function App() {
     </MapContainer>
   );
 
+<<<<<<< HEAD
  const sendChat = async () => {
     if (!chatInput.trim() || chatLoading) return;
     const question = chatInput;
@@ -238,6 +312,14 @@ export default function App() {
       {/* ══════════ SIDEBAR ══════════ */}
       <aside style={{ width:240, background:C.navy, display:"flex", flexDirection:"column", flexShrink:0, color:"#cbd5e1" }}>
  
+=======
+  return (
+    <div style={{ display:"flex", height:"100vh", background:C.bg, fontFamily:"'Inter', 'Segoe UI', system-ui, sans-serif", color:C.text, overflow:"hidden" }}>
+
+      {/* ══════════ SIDEBAR ══════════ */}
+      <aside style={{ width:240, background:C.navy, display:"flex", flexDirection:"column", flexShrink:0, color:"#cbd5e1" }}>
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
         <div style={{ padding:"22px 22px 18px", borderBottom:`1px solid ${C.navyLight}` }}>
           <div style={{ display:"flex", alignItems:"center", gap:11 }}>
             <div style={{ width:36, height:36, borderRadius:9, background:C.yellow, display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, color:C.navy, fontWeight:"900" }}>M</div>
@@ -246,6 +328,7 @@ export default function App() {
               <div style={{ fontSize:10, color:"#94a3b8", letterSpacing:0.8, textTransform:"uppercase", marginTop:1 }}>Rail Telemetry</div>
             </div>
           </div>
+<<<<<<< HEAD
         </div>
  
         {/* ════════════════════════════════════════════════════ */}
@@ -287,6 +370,49 @@ export default function App() {
       {/* ══════════ MAIN ══════════ */}
       <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
  
+=======
+        </div>
+
+        {/* ════════════════════════════════════════════════════ */}
+        {/* 📌 EMPLACEMENT DU LOGO DPE                            */}
+        {/*   Remplace <DpeLogo width={170} /> par :              */}
+        {/*   <img src="/dpe-logo.png" alt="DPE" style={{width:170}} /> */}
+        {/*   (mets le fichier dans frontend/public/)             */}
+        {/* ════════════════════════════════════════════════════ */}
+        <div style={{ padding:"18px 22px", borderBottom:`1px solid ${C.navyLight}`, display:"flex", justifyContent:"center" }}>
+          <DpeLogo width={170} />
+        </div>
+
+        <nav style={{ flex:1, padding:"14px 0", overflowY:"auto" }}>
+          {NAV_ITEMS.map(item => (
+            <button key={item.id} onClick={() => setPage(item.id)} style={{ width:"100%", display:"flex", alignItems:"center", gap:12, padding:"11px 22px", border:"none", background: page===item.id ? "rgba(255,205,0,0.1)" : "transparent", color: page===item.id ? C.yellow : "#cbd5e1", fontSize:13, cursor:"pointer", textAlign:"left", borderLeft: page===item.id ? `3px solid ${C.yellow}` : "3px solid transparent", transition:"all 0.15s", fontFamily:"inherit", fontWeight: page===item.id ? "600" : "400" }}>
+              <span style={{ fontSize:15 }}>{item.icon}</span>{item.label}
+            </button>
+          ))}
+        </nav>
+
+        <div style={{ padding:"18px 22px", borderTop:`1px solid ${C.navyLight}`, fontSize:11 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:7, marginBottom:6 }}>
+            <span style={{ width:8, height:8, borderRadius:"50%", background:C.ok, display:"block", boxShadow:`0 0 8px ${C.ok}` }} />
+            <span style={{ color:"#ffffff", fontWeight:"600" }}>Système opérationnel</span>
+          </div>
+          <div style={{ color:"#94a3b8", fontSize:10 }}>
+            {current ? `${current.date?.slice(0,10)} · ${current.heure?.slice(11,19)}` : "—"}
+          </div>
+          <div style={{ marginTop:12, padding:"10px 0 0", borderTop:`1px solid ${C.navyLight}`, display:"flex", alignItems:"center", gap:9 }}>
+            <div style={{ width:30, height:30, borderRadius:"50%", background:`linear-gradient(135deg,${C.yellow},#ffa500)`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, color:C.navy, fontWeight:"700" }}>OG</div>
+            <div>
+              <div style={{ color:"#ffffff", fontSize:11, fontWeight:"600" }}>Othmane GAMZI</div>
+              <div style={{ color:"#94a3b8", fontSize:9 }}>Admin</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* ══════════ MAIN ══════════ */}
+      <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
         <header style={{ height:60, borderBottom:`1px solid ${C.border}`, display:"flex", alignItems:"center", padding:"0 24px", justifyContent:"space-between", flexShrink:0, background:C.card }}>
           <div>
             <div style={{ display:"flex", alignItems:"center", gap:12 }}>
@@ -310,11 +436,19 @@ export default function App() {
             </div>
           </div>
         </header>
+<<<<<<< HEAD
  
         {/* ════ LIVE ════ */}
         {page === "live" && (
           <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:16, gap:12 }}>
  
+=======
+
+        {/* ════ LIVE ════ */}
+        {page === "live" && (
+          <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:16, gap:12 }}>
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
             {/* ✅ KPI Cards plus compacts pour donner plus de place à la map */}
             <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12, flexShrink:0 }}>
               {[
@@ -347,9 +481,15 @@ export default function App() {
                 );
               })}
             </div>
+<<<<<<< HEAD
  
             <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 380px", gap:12, minHeight:0 }}>
  
+=======
+
+            <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 380px", gap:12, minHeight:0 }}>
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
               {/* ════ MAP avec bouton plein écran ════ */}
               <div style={{ ...cardStyle, overflow:"hidden", position:"relative", display:"flex", flexDirection:"column" }}>
                 <div style={{ padding:"12px 18px", borderBottom:`1px solid ${C.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
@@ -370,7 +510,11 @@ export default function App() {
                   {renderMap()}
                 </div>
               </div>
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
               {/* ════ TABLE — Scroll naturel, latest en haut ════ */}
               <div style={{ ...cardStyle, display:"flex", flexDirection:"column", overflow:"hidden" }}>
                 <div style={{ padding:"12px 18px", borderBottom:`1px solid ${C.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
@@ -396,7 +540,11 @@ export default function App() {
                 </div>
               </div>
             </div>
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
             <div style={{ ...cardStyle, padding:"12px 22px", display:"flex", alignItems:"center", gap:18, flexShrink:0 }}>
               <div style={{ display:"flex", alignItems:"center", gap:8 }}>
                 <span style={{ width:9, height:9, borderRadius:"50%", background:C.yellow, display:"block" }} />
@@ -413,11 +561,19 @@ export default function App() {
             </div>
           </div>
         )}
+<<<<<<< HEAD
  
         {/* ════ ANALYTICS ════ */}
         {page === "analytics" && (
           <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:20, gap:16 }}>
  
+=======
+
+        {/* ════ ANALYTICS ════ */}
+        {page === "analytics" && (
+          <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:20, gap:16 }}>
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
             <div style={{ display:"flex", gap:8, flexShrink:0, alignItems:"center", justifyContent:"space-between" }}>
               <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
                 {PARAMS.map(p => (
@@ -433,9 +589,15 @@ export default function App() {
                 </span>
               </div>
             </div>
+<<<<<<< HEAD
  
             <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 330px", gap:16, minHeight:0 }}>
  
+=======
+
+            <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 330px", gap:16, minHeight:0 }}>
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
               <div style={{ ...cardStyle, overflow:"hidden", display:"flex", flexDirection:"column" }}>
                 <div style={{ padding:"14px 18px", borderBottom:`1px solid ${C.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                   <div>
@@ -471,7 +633,11 @@ export default function App() {
                   )}
                 </div>
               </div>
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
               <div style={{ display:"flex", flexDirection:"column", gap:12, overflowY:"auto" }}>
                 {[
                   { label:"Valeur actuelle", value:statCurrent.toFixed(1), sub: current ? `${current.date?.slice(0,10)} · ${current.heure?.slice(11,19)}` : "", color:param.color },
@@ -487,7 +653,11 @@ export default function App() {
                     <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>{s.sub}</div>
                   </div>
                 ))}
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
                 <div style={{ ...cardStyle, padding:"14px 16px" }}>
                   <div style={{ fontSize:12, fontWeight:"700", color:C.text, marginBottom:10 }}>Statistiques détaillées</div>
                   {[
@@ -502,7 +672,11 @@ export default function App() {
                     </div>
                   ))}
                 </div>
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
                 <div style={{ ...cardStyle, padding:"14px 16px" }}>
                   <div style={{ fontSize:12, fontWeight:"700", color:C.text, marginBottom:8 }}>Distribution température</div>
                   <div style={{ display:"flex", alignItems:"center", gap:10 }}>
@@ -529,7 +703,11 @@ export default function App() {
             </div>
           </div>
         )}
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
         {["assets","alerts","reports","settings"].includes(page) && (
           <div style={{ flex:1, display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", gap:14, padding:40 }}>
             <div style={{ width:80, height:80, borderRadius:20, background:C.card, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:36, boxShadow:"0 1px 3px rgba(10,23,51,0.04)" }}>
@@ -541,7 +719,11 @@ export default function App() {
           </div>
         )}
       </div>
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
       {/* ════════════ MAP FULLSCREEN OVERLAY ════════════ */}
       {mapFullscreen && (
         <div style={{ position:"fixed", inset:0, zIndex:9999, background:C.card, display:"flex", flexDirection:"column" }}>
@@ -560,6 +742,7 @@ export default function App() {
           <div style={{ flex:1 }}>
             {renderMap("100%")}
           </div>
+<<<<<<< HEAD
           const API = "http://127.0.0.1:5000";
         </div>
       )}
@@ -642,6 +825,8 @@ export default function App() {
               </button>
             </div>
           </div>
+=======
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
         </div>
       )}
     </div>

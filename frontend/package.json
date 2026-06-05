@@ -9,7 +9,11 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.16.1",
     "leaflet": "^1.9.4",
+<<<<<<< HEAD
     "plotly.js": "^3.6.0",
+=======
+    "plotly.js": "^3.5.1",
+>>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-leaflet": "^5.0.0",
