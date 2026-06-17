@@ -1,34 +1,20 @@
-<<<<<<< HEAD
 import { useEffect, useState, useRef } from "react";
-=======
-import { useEffect, useState } from "react";
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import Plot from "react-plotly.js";
 import dpeLogo from "./assets/dpe-logo.png";
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 // ════════════════════════════════════════════════════════════
 // 📌 POUR REMPLACER LE LOGO PAR LE VRAI FICHIER :
 //   1. Place ton logo dans :     frontend/public/dpe-logo.png  (ou .svg)
 //   2. Cherche plus bas la ligne `<DpeLogo width={170} />`
 //   3. Remplace-la par :         <img src="/dpe-logo.png" alt="DPE" style={{ width: 170 }} />
 // ════════════════════════════════════════════════════════════
-<<<<<<< HEAD
  
 const API = "http://127.0.0.1:5000";
  
-=======
-
-const API = "https://mymatics-production.up.railway.app";
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 const C = {
   navy:       "#0a1733",
   navyHover:  "#152347",
@@ -47,11 +33,7 @@ const C = {
   danger:     "#dc2626",
   accent:     "#1e40af",
 };
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 const DPE_LOGO_SRC = dpeLogo;
 const DpeLogo = ({ width = 120 }) => (
   <img
@@ -65,39 +47,45 @@ const DpeLogo = ({ width = 120 }) => (
     }}
   />
 );
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 const NAV_ITEMS = [
   { id: "live",      label: "Suivi en temps réel", icon: "📡" },
   { id: "analytics", label: "Analyse historique",  icon: "📊" },
+  { id: "history",   label: "Historique parcours", icon: "🗺️" },
   { id: "alerts",    label: "Alertes",             icon: "🔔" },
   { id: "assets",    label: "Engins & capteurs",   icon: "🚂" },
   { id: "reports",   label: "Rapports",            icon: "📋" },
   { id: "settings",  label: "Administration",      icon: "⚙️" },
 ];
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 // ✅ FIX : ajout de fuel_rate (consommation), fuel_level reste mais sera complété
 const PARAMS = [
-  { key: "temperature", label: "Température",    unit: "°C",  color: "#dc2626", icon: "🌡️" },
+  { key: "temperature", label: "Température liquide",    unit: "°C",  color: "#dc2626", icon: "🌡️" },
   { key: "fuel_rate",   label: "Consommation",   unit: "L/h", color: "#FFCD00", icon: "⛽" },
   { key: "fuel_level",  label: "Niveau Fuel",    unit: "%",   color: "#f59e0b", icon: "🛢️" },
   { key: "battery",     label: "Batterie",       unit: "V",   color: "#10b981", icon: "🔋" },
   { key: "load",        label: "Charge moteur",  unit: "%",   color: "#1e40af", icon: "⚙️" },
   { key: "p_oil",       label: "Pression huile", unit: "bar", color: "#7c3aed", icon: "🛢️" },
+  { key: "rpm",         label: "Régime moteur",  unit: "tr/min", color: "#ec4899", icon: "🔄" },
   { key: "altitude",    label: "Altitude",       unit: "m",   color: "#0891b2", icon: "⛰️" },
 ];
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
+const DEFAULT_FLEET_COLUMNS = [
+  { key: 'id',          label: 'ID Engin',     width: 90  },
+  { key: 'numero_gm',   label: 'N° GM',        width: 100 },
+  { key: 'agence',      label: 'Agence',       width: 200 },
+  { key: 'type',        label: 'Type',         width: 150 },
+  { key: 'marque',      label: 'Marque',       width: 130 },
+  { key: 'last_update', label: 'Dernière MAJ', width: 140 },
+  { key: 'position',    label: 'Position',     width: 90  },
+  { key: 'temperature', label: 'Temp liquide °C',      width: 90  },
+  { key: 'fuel_rate',   label: 'Carb L/h',     width: 90  },
+  { key: 'fuel_level',  label: 'Fuel %',       width: 90  },
+  { key: 'battery',     label: 'Bat V',        width: 90  },
+  { key: 'etat',        label: 'État',         width: 80  },
+  { key: 'engine_hours', label: 'H. moteur',   width: 90  },
+  { key: 'p_oil',        label: 'P. huile',    width: 90  },
+];
 const trainIcon = new L.DivIcon({
   html: `
     <div style="position:relative;width:38px;height:38px;">
@@ -108,22 +96,15 @@ const trainIcon = new L.DivIcon({
   `,
   iconSize: [38, 38], iconAnchor: [19, 19], className: ""
 });
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
+ 
 function hexToRgb(hex) {
   const r = parseInt(hex.slice(1,3),16);
   const g = parseInt(hex.slice(3,5),16);
   const b = parseInt(hex.slice(5,7),16);
   return `${r},${g},${b}`;
 }
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 function Sparkline({ data, color, width=110, height=22 }) {
   const vals = (data||[]).filter(v => v > 0);
   if (vals.length < 2) return <div style={{ width, height }} />;
@@ -140,21 +121,15 @@ function Sparkline({ data, color, width=110, height=22 }) {
     </svg>
   );
 }
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
 function RecenterMap({ position }) {
   const map = useMap();
   useEffect(() => { if (position) map.setView(position, map.getZoom()); }, [position, map]);
   return null;
 }
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
+
+
 function getStatus(key, val) {
   if (key === "temperature") {
     if (val > 90) return { label:"Critique", color:C.danger };
@@ -174,29 +149,140 @@ function getStatus(key, val) {
   if (key === "altitude") return { label:"GPS Actif", color:C.accent };
   return { label:"Normal", color:C.ok };
 }
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
+const ChatViz = ({ viz }) => {
+  if (!viz) return null;
+  const titre = <div style={{ fontSize:11, fontWeight:"700", color:C.navy, margin:"2px 2px 6px" }}>{viz.titre}</div>;
+
+  if (viz.type === "chart") {
+    return (
+      <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:8, marginTop:6 }}>
+        {titre}
+        <Plot
+          data={[{
+            x: viz.x, y: viz.y, type:"scatter", mode:"lines",
+            line:{ color:C.navy, width:2 }, fill:"tozeroy", fillcolor:"rgba(10,23,51,0.07)",
+          }]}
+          layout={{
+            autosize:true, height:210,
+            margin:{ l:38, r:12, t:6, b:30 },
+            xaxis:{ tickformat:"%d/%m %H:%M", tickfont:{ size:9 }, nticks:5 },
+            yaxis:{ tickfont:{ size:9 } },
+            font:{ family:"Inter, sans-serif" },
+            showlegend:false, paper_bgcolor:"transparent", plot_bgcolor:"transparent",
+          }}
+          config={{ displayModeBar:false, responsive:true }}
+          style={{ width:"100%" }}
+          useResizeHandler
+        />
+      </div>
+    );
+  }
+
+  if (viz.type === "map") {
+    const pts = viz.points.map(p => [p.lat, p.lng]);
+    if (!pts.length) return null;
+    const center = pts[Math.floor(pts.length / 2)];
+    return (
+      <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:8, marginTop:6 }}>
+        {titre}
+        <MapContainer center={center} zoom={11} scrollWheelZoom={false} style={{ height:240, width:"100%", borderRadius:8 }}>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
+          <TileLayer url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png" opacity={0.7} />
+          {pts.length > 1 && <Polyline positions={pts} color={C.navy} weight={3.5} opacity={0.85} />}
+          <Marker position={pts[0]} icon={trainIcon}><Popup>Départ · {viz.points[0].heure}</Popup></Marker>
+          {pts.length > 1 && <Marker position={pts[pts.length-1]} icon={trainIcon}><Popup>Fin · {viz.points[pts.length-1].heure}</Popup></Marker>}
+        </MapContainer>
+      </div>
+    );
+  }
+  return null;
+};
+
+// État machine basé sur le régime moteur (RPM)
+// État machine basé sur le régime moteur (RPM) et la charge
+function getEngineState(rpm, load) {
+  const rpmVal  = rpm  || 0;
+  const loadVal = load || 0;
+  
+  // Complètement arrêté : RPM ET charge à 0
+  if (rpmVal === 0 && loadVal === 0) {
+    return { label: "Arrêté",    color: "#dc2626", bg: "#fef2f2", dot: "#dc2626" };
+  }
+  // Ralenti : RPM < 600 (mais une activité résiduelle)
+  if (rpmVal < 600) {
+    return { label: "Ralenti",   color: "#f59e0b", bg: "#fffbeb", dot: "#f59e0b" };
+  }
+  // En marche : RPM ≥ 600
+  return         { label: "En marche", color: "#10b981", bg: "#ecfdf5", dot: "#10b981" };
+}
+ 
 export default function App() {
   const [page, setPage]               = useState("live");
   const [positions, setPositions]     = useState([]);
   const [current, setCurrent]         = useState(null);
   const [trail, setTrail]             = useState([]);
   const [progress, setProgress]       = useState({ current: 0, total: 0 });
-  const [activeParam, setActiveParam] = useState("temperature");
+  const [activeParams, setActiveParams] = useState(["temperature"]);
   const [mapFullscreen, setMapFullscreen] = useState(false);  // ✅ Plein écran
-<<<<<<< HEAD
 
   const [chatOpen, setChatOpen]         = useState(false);
   const [chatMessages, setChatMessages] = useState([
-    { role: "bot", text: "Bonjour ! Je suis l'assistant MyMatics. Pose-moi des questions sur les données télémétriques du train CR-4521 🚂" }
+    { role: "bot", text: "Bonjour ! Je suis l'assistant MyMatics. Pose-moi des questions sur les données télématiques 🚂" }
   ]);
   const [chatInput, setChatInput]       = useState("");
   const [chatLoading, setChatLoading]   = useState(false);
-=======
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
+
+  const [alertsTab, setAlertsTab]       = useState("config");  // 'config' ou 'history'
+  const [alerts, setAlerts]             = useState([]);
+  const [alertsHistory, setAlertsHistory] = useState([]);
+  const [showNewAlert, setShowNewAlert] = useState(false);
+  const [newAlert, setNewAlert]         = useState({
+  name: "",
+  recipients: "",
+  conditions: [{ parameter: "temperature", operator: ">", value: "" }],
+});
+
+const [fleet, setFleet] = useState([]);
+const [fleetCols, setFleetCols] = useState(DEFAULT_FLEET_COLUMNS);
+const [draggedColIdx, setDraggedColIdx] = useState(null);
+const [mapPopup, setMapPopup] = useState(null);  // {lat, lon, id, name}
+const [historyEngines, setHistoryEngines] = useState([]);
+const [historyEngine,  setHistoryEngine]  = useState("CR-4521");
+const [historyStart,   setHistoryStart]   = useState("");
+const [historyEnd,     setHistoryEnd]     = useState("");
+const [historyPoints,  setHistoryPoints]  = useState([]);
+const [historyLoading, setHistoryLoading] = useState(false);
+const downloadFleetReport = () => {
+  const headers = ['ID Engin','Numéro GM','Agence','Type','Marque','Dernière MAJ',
+    'Latitude','Longitude','Altitude (m)','Température (°C)','Consommation (L/h)',
+    'Niveau Fuel (%)','Batterie (V)','Charge moteur (%)','Pression huile (bar)',
+    'Heures moteur','Cap (°)','Température essieux (°C)','RPM','État'];
+
+  const rows = fleet.map(m => [
+    m.id, m.numero_gm, m.agence, m.type, m.marque, m.last_update,
+    m.latitude.toFixed(6), m.longitude.toFixed(6), m.altitude.toFixed(0),
+    m.temperature.toFixed(1), m.fuel_rate.toFixed(1), m.fuel_level.toFixed(1),
+    m.battery.toFixed(1), m.load.toFixed(1), m.p_oil.toFixed(2),
+    m.engine_hours.toFixed(1), m.cap.toFixed(0),
+    m.axle_temp?.toFixed(1) ?? '', m.rpm?.toFixed(0) ?? '',
+    getEngineState(m.rpm, m.load).label
+  ]);
+  
+  const csvContent = [headers.join(';'), ...rows.map(r => r.join(';'))].join('\n');
+  const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `rapport_flotte_${new Date().toISOString().slice(0,10)}.csv`;
+  link.click();
+};
+
+useEffect(() => {
+  if (page === "reports") {
+    axios.get(`${API}/api/fleet`).then(res => setFleet(res.data)).catch(console.error);
+  }
+}, [page]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -218,25 +304,75 @@ export default function App() {
     const iv = setInterval(fetchData, 3000);
     return () => clearInterval(iv);
   }, []);
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
   const pct      = progress.total ? ((progress.current / progress.total) * 100).toFixed(1) : 0;
   const mapPos   = current ? [current.latitude, current.longitude] : [48.44, 1.77];
   const last10   = positions.slice(-10).reverse();
-  const param    = PARAMS.find(p => p.key === activeParam);
-  const vals     = positions.map(p => p[activeParam]).filter(v => v > 0);
-  const statCurrent = vals[vals.length-1] ?? 0;
-  const statAvg  = vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1) : 0;
-  const statMax  = vals.length ? Math.max(...vals).toFixed(1) : 0;
-  const statMin  = vals.length ? Math.min(...vals).toFixed(1) : 0;
-<<<<<<< HEAD
- 
-=======
+  const param    = PARAMS.find(p => p.key === activeParams[0]);
+const vals     = positions.map(p => p[activeParams[0]]).filter(v => v > 0);
+const statCurrent = vals[vals.length-1] ?? 0;
+const statAvg  = vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1) : 0;
+const statMax  = vals.length ? Math.max(...vals).toFixed(1) : 0;
+const statMin  = vals.length ? Math.min(...vals).toFixed(1) : 0;
 
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
+const toggleParam = (key) => {
+  if (activeParams.includes(key)) {
+    if (activeParams.length > 1) setActiveParams(activeParams.filter(p => p !== key));
+  } else {
+    setActiveParams([...activeParams, key]);
+  }
+};
+
+// Build multi-trace data for Plotly overlay
+const plotTraces = activeParams.map((paramKey, idx) => {
+  const p = PARAMS.find(x => x.key === paramKey);
+  const data = positions.filter(pt => pt[paramKey] > 0).sort((a,b) => a.heure.localeCompare(b.heure));
+  return {
+    x: data.map(pt => pt.heure.replace(' ', 'T')),
+    y: data.map(pt => pt[paramKey]),
+    type: "scatter",
+    mode: "lines",
+    name: `${p.label} (${p.unit})`,
+    line: { color: p.color, width: 2 },
+    yaxis: idx === 0 ? 'y' : `y${idx+1}`,
+    hovertemplate: `<b>${p.label}</b>: %{y} ${p.unit}<br>%{x}<extra></extra>`,
+  };
+});
+
+const plotLayout = (() => {
+  const firstParam = PARAMS.find(p => p.key === activeParams[0]);
+  const layout = {
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
+    font: { family: "'Inter',sans-serif", color: C.textSec, size: 11 },
+    margin: { t: 30, r: 60 + Math.max(0, activeParams.length - 2) * 55, b: 50, l: 60 },
+    xaxis: { gridcolor: C.borderSoft, tickcolor: C.muted, linecolor: C.border, type: "date", tickformat: "%d/%m %H:%M" },
+    yaxis: {
+      gridcolor: C.borderSoft,
+      tickfont: { color: firstParam.color },
+      linecolor: firstParam.color,
+      title: { text: `${firstParam.label} (${firstParam.unit})`, font: { color: firstParam.color, size: 11 } },
+    },
+    showlegend: activeParams.length > 1,
+    legend: { orientation: "h", y: 1.12, x: 0, font: { size: 11 } },
+    hovermode: "x unified",
+  };
+  activeParams.slice(1).forEach((paramKey, idx) => {
+    const p = PARAMS.find(x => x.key === paramKey);
+    layout[`yaxis${idx + 2}`] = {
+      overlaying: 'y',
+      side: 'right',
+      tickfont: { color: p.color },
+      linecolor: p.color,
+      title: { text: `${p.label} (${p.unit})`, font: { color: p.color, size: 11 } },
+      position: idx === 0 ? 1 : Math.max(0.7, 1 - idx * 0.08),
+      anchor: idx === 0 ? 'x' : 'free',
+      showgrid: false,
+    };
+  });
+  return layout;
+})();
+ 
   const tempVals = positions.map(p => p.temperature).filter(v => v > 0);
   const tempDist = [
     { label:"< 60°C",  count: tempVals.filter(v=>v<60).length,        color:"#94a3b8" },
@@ -246,80 +382,233 @@ export default function App() {
     { label:"> 90°C",  count: tempVals.filter(v=>v>=90).length,       color:C.danger  },
   ];
   const tempTotal = tempDist.reduce((s,d)=>s+d.count,0) || 1;
-<<<<<<< HEAD
  
-  const chartData = positions.filter(p => p[activeParam] > 0).sort((a,b) => a.heure.localeCompare(b.heure));
-  const chartX    = chartData.map(p => p.heure.replace(' ', 'T'));
-  const chartY    = chartData.map(p => p[activeParam]);
  
-=======
-
-  const chartData = positions.filter(p => p[activeParam] > 0).sort((a,b) => a.heure.localeCompare(b.heure));
-  const chartX    = chartData.map(p => p.heure.replace(' ', 'T'));
-  const chartY    = chartData.map(p => p[activeParam]);
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
   const cardStyle = {
     background: C.card,
     borderRadius: 12,
     border: `1px solid ${C.border}`,
     boxShadow: "0 1px 3px rgba(10,23,51,0.04), 0 1px 2px rgba(10,23,51,0.06)",
   };
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
   // ────── Rendu du contenu de la carte (réutilisé en plein écran) ──────
   const renderMap = (height = "100%") => current && (
     <MapContainer center={mapPos} zoom={11} style={{ height, width:"100%" }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
       <TileLayer url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png" attribution="© OpenRailwayMap" opacity={0.7} />
       <RecenterMap position={mapPos} />
-      {trail.length > 1 && <Polyline positions={trail} color={C.navy} weight={3.5} opacity={0.85} />}
       <Marker position={mapPos} icon={trainIcon}>
-        <Popup maxWidth={250}>
-          <div style={{ fontFamily:"'Inter',sans-serif", fontSize:12, lineHeight:1.7, color:C.text, padding:"3px 0" }}>
-            <div style={{ fontWeight:"700", fontSize:13, color:C.navy, marginBottom:6 }}>🚂 Train CR-4521</div>
-            <div style={{ color:C.textSec, marginBottom:2 }}><b>Date :</b> {current.date?.slice(0,10)}</div>
-            <div style={{ color:C.textSec, marginBottom:2 }}><b>Heure :</b> {current.heure?.slice(11,19)}</div>
+        <Popup maxWidth={300}>
+          <div style={{ fontFamily:"'Inter',sans-serif", fontSize:12, lineHeight:1.6, color:C.text, padding:"3px 0", minWidth:240 }}>
+            
+            {/* Header */}
+            <div style={{ fontWeight:"700", fontSize:14, color:C.navy, marginBottom:8, paddingBottom:6, borderBottom:`1px solid ${C.borderSoft}` }}>
+              🚂 Train CR-4521
+            </div>
+            
+            {/* Localisation */}
+            <div style={{ fontSize:9, color:C.muted, textTransform:"uppercase", letterSpacing:1, fontWeight:"600", margin:"6px 0 4px" }}>📍 Localisation</div>
+            <div style={{ color:C.textSec, marginBottom:2 }}><b>Date :</b> {current.date?.slice(0,10)} · {current.heure?.slice(11,19)}</div>
             <div style={{ color:C.textSec, marginBottom:2 }}><b>Position :</b> {current.latitude.toFixed(4)}, {current.longitude.toFixed(4)}</div>
-            <div style={{ color:C.textSec, marginBottom:2 }}><b>Cap :</b> {current.cap}°</div>
+            <div style={{ color:C.textSec, marginBottom:2 }}><b>Altitude :</b> {current.altitude?.toFixed(0)} m · <b>Cap :</b> {current.cap?.toFixed(0)}°</div>
+            
+            {/* Télémétrie */}
+            <div style={{ fontSize:9, color:C.muted, textTransform:"uppercase", letterSpacing:1, fontWeight:"600", margin:"10px 0 6px" }}>⚙️ Télémétrie</div>
+            
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"6px 12px", fontSize:11 }}>
+              <div>
+                <span style={{ color:C.muted, fontSize:10 }}>🌡️ Température</span><br/>
+                <b style={{ color: current.temperature > 85 ? C.danger : current.temperature > 75 ? C.warn : C.ok, fontSize:13 }}>
+                  {current.temperature?.toFixed(1)} °C
+                </b>
+              </div>
+              <div>
+                <span style={{ color:C.muted, fontSize:10 }}>🔋 Batterie</span><br/>
+                <b style={{ color: current.battery < 22 ? C.danger : current.battery < 24 ? C.warn : C.ok, fontSize:13 }}>
+                  {current.battery?.toFixed(1)} V
+                </b>
+              </div>
+              <div>
+                <span style={{ color:C.muted, fontSize:10 }}>⛽ Consommation</span><br/>
+                <b style={{ color:C.text, fontSize:13 }}>{current.fuel_rate?.toFixed(1)} L/h</b>
+              </div>
+              <div>
+                <span style={{ color:C.muted, fontSize:10 }}>🛢️ Pression huile</span><br/>
+                <b style={{ color:C.text, fontSize:13 }}>{current.p_oil?.toFixed(2)} bar</b>
+              </div>
+              <div>
+                <span style={{ color:C.muted, fontSize:10 }}>⚙️ Charge moteur</span><br/>
+                <b style={{ color:C.text, fontSize:13 }}>{current.load?.toFixed(0)} %</b>
+              </div>
+              <div>
+                <span style={{ color:C.muted, fontSize:10 }}>⏱️ Heures moteur</span><br/>
+                <b style={{ color:C.text, fontSize:13 }}>{current.engine_hours?.toFixed(0)} h</b>
+              </div>
+            </div>
+            
+            {/* État */}
+            {(() => {
+              const st = getEngineState(current.rpm, current.load);
+              return (
+                <div style={{ marginTop:10, paddingTop:8, borderTop:`1px solid ${C.borderSoft}`,
+                  display:"flex", alignItems:"center", justifyContent:"space-between", gap:6 }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+                    <span style={{ width:9, height:9, borderRadius:"50%", background:st.dot, display:"inline-block",
+                      boxShadow:`0 0 8px ${st.dot}` }} />
+                    <span style={{ color:st.color, fontSize:11, fontWeight:"700" }}>{st.label}</span>
+                  </div>
+                  <div style={{ fontSize:10, color:C.muted }}>
+                    RPM : <b style={{ color:C.text }}>{current.rpm?.toFixed(0) ?? 0}</b> tr/min
+                  </div>
+                </div>
+              );
+            })()}
+            
           </div>
         </Popup>
       </Marker>
     </MapContainer>
   );
 
-<<<<<<< HEAD
- const sendChat = async () => {
-    if (!chatInput.trim() || chatLoading) return;
-    const question = chatInput;
-    setChatMessages(m => [...m, { role: "user", text: question }]);
-    setChatInput("");
-    setChatLoading(true);
-    try {
-      const res = await axios.post(`${API}/api/chat`, { question });
-      setChatMessages(m => [...m, { role: "bot", text: res.data.response }]);
-    } catch (e) {
-      setChatMessages(m => [...m, { role: "bot", text: "❌ Erreur de connexion à l'assistant." }]);
+// ─── Reconnaissance vocale (Web Speech API) ───
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
+
+  const toggleVoice = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("La reconnaissance vocale n'est pas supportée ici. Utilise Chrome ou Edge.");
+      return;
     }
-    setChatLoading(false);
+    if (isListening) {                       // déjà en écoute → on arrête
+      recognitionRef.current?.stop();
+      return;
+    }
+    const recognition = new SpeechRecognition();
+    recognition.lang = "fr-FR";
+    recognition.interimResults = true;       // affiche le texte en direct
+    recognition.continuous = false;          // s'arrête tout seul après une phrase
+    recognition.onstart  = () => setIsListening(true);
+    recognition.onresult = (e) => {
+      const transcript = Array.from(e.results).map(r => r[0].transcript).join("");
+      setChatInput(transcript);              // remplit le champ au fur et à mesure
+    };
+    recognition.onerror  = () => setIsListening(false);
+    recognition.onend    = () => setIsListening(false);
+    recognitionRef.current = recognition;
+    recognition.start();
   };
+
+ const sendChat = async () => {
+  if (!chatInput.trim() || chatLoading) return;
+  const question = chatInput;
+  setChatMessages(m => [...m, { role: "user", text: question }]);
+  setChatInput("");
+  setChatLoading(true);
+  try {
+    // ✅ Envoie l'historique (sans le message d'accueil)
+    const history = chatMessages.slice(1).map(m => ({
+      role: m.role === 'user' ? 'user' : 'model',
+      text: m.text
+    }));
+    const res = await axios.post(`${API}/api/chat`, { question, history });
+    setChatMessages(m => [...m, { role: "bot", text: res.data.response, viz: res.data.visualization }]);
+  } catch (e) {
+    setChatMessages(m => [...m, { role: "bot", text: "❌ Erreur de connexion à l'assistant." }]);
+  }
+  setChatLoading(false);
+};
+
+  const loadHistoryInfo = async () => {
+  try {
+    const res = await axios.get(`${API}/api/dataset/info`);
+    setHistoryEngines(res.data.engines || []);
+    if (res.data.engines?.length && !historyStart) {
+      setHistoryStart(res.data.engines[0].first_date);
+      setHistoryEnd(res.data.engines[0].last_date);
+    }
+  } catch (e) { console.error(e); }
+};
+
+const searchHistory = async () => {
+  setHistoryLoading(true);
+  try {
+    const res = await axios.get(`${API}/api/history`, {
+      params: { engine_id: historyEngine, start_date: historyStart, end_date: historyEnd }
+    });
+    setHistoryPoints(res.data.points || []);
+  } catch (e) { console.error(e); }
+  setHistoryLoading(false);
+};
+
+useEffect(() => {
+  if (page === "history") loadHistoryInfo();
+}, [page]);
+
+useEffect(() => {
+  const e = historyEngines.find(x => x.id === historyEngine);
+  if (e) { setHistoryStart(e.first_date); setHistoryEnd(e.last_date); }
+}, [historyEngine, historyEngines]);
+
+  const loadAlerts = async () => {
+  try {
+    const res = await axios.get(`${API}/api/alerts`);
+    setAlerts(res.data);
+  } catch (e) { console.error(e); }
+};
+
+const loadAlertsHistory = async () => {
+  try {
+    const res = await axios.get(`${API}/api/alerts/history`);
+    setAlertsHistory(res.data.reverse());
+  } catch (e) { console.error(e); }
+};
+
+const createAlert = async () => {
+  if (!newAlert.name.trim()) { alert("Donne un nom à l'alerte"); return; }
+  if (!newAlert.recipients.trim()) { alert("Ajoute au moins un destinataire"); return; }
+  if (newAlert.conditions.some(c => !c.value)) { alert("Remplis toutes les valeurs"); return; }
+  
+  try {
+    await axios.post(`${API}/api/alerts`, {
+      name: newAlert.name,
+      conditions: newAlert.conditions.map(c => ({ ...c, value: parseFloat(c.value) })),
+      recipients: newAlert.recipients.split(",").map(e => e.trim()).filter(Boolean),
+    });
+    setNewAlert({ name: "", recipients: "", conditions: [{ parameter: "temperature", operator: ">", value: "" }] });
+    setShowNewAlert(false);
+    loadAlerts();
+  } catch (e) { console.error(e); }
+};
+
+const deleteAlert = async (id) => {
+  if (!window.confirm("Supprimer cette alerte ?")) return;
+  await axios.delete(`${API}/api/alerts/${id}`);
+  loadAlerts();
+};
+
+const toggleAlert = async (id) => {
+  await axios.post(`${API}/api/alerts/${id}/toggle`);
+  loadAlerts();
+};
+
+useEffect(() => {
+  if (page === "alerts") {
+    loadAlerts();
+    loadAlertsHistory();
+    const iv = setInterval(() => {
+      if (alertsTab === "history") loadAlertsHistory();
+    }, 5000);
+    return () => clearInterval(iv);
+  }
+}, [page, alertsTab]);
+
   return (
     <div style={{ display:"flex", height:"100vh", background:C.bg, fontFamily:"'Inter', 'Segoe UI', system-ui, sans-serif", color:C.text, overflow:"hidden" }}>
  
       {/* ══════════ SIDEBAR ══════════ */}
       <aside style={{ width:240, background:C.navy, display:"flex", flexDirection:"column", flexShrink:0, color:"#cbd5e1" }}>
  
-=======
-  return (
-    <div style={{ display:"flex", height:"100vh", background:C.bg, fontFamily:"'Inter', 'Segoe UI', system-ui, sans-serif", color:C.text, overflow:"hidden" }}>
-
-      {/* ══════════ SIDEBAR ══════════ */}
-      <aside style={{ width:240, background:C.navy, display:"flex", flexDirection:"column", flexShrink:0, color:"#cbd5e1" }}>
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
         <div style={{ padding:"22px 22px 18px", borderBottom:`1px solid ${C.navyLight}` }}>
           <div style={{ display:"flex", alignItems:"center", gap:11 }}>
             <div style={{ width:36, height:36, borderRadius:9, background:C.yellow, display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, color:C.navy, fontWeight:"900" }}>M</div>
@@ -328,7 +617,6 @@ export default function App() {
               <div style={{ fontSize:10, color:"#94a3b8", letterSpacing:0.8, textTransform:"uppercase", marginTop:1 }}>Rail Telemetry</div>
             </div>
           </div>
-<<<<<<< HEAD
         </div>
  
         {/* ════════════════════════════════════════════════════ */}
@@ -350,10 +638,15 @@ export default function App() {
         </nav>
  
         <div style={{ padding:"18px 22px", borderTop:`1px solid ${C.navyLight}`, fontSize:11 }}>
-          <div style={{ display:"flex", alignItems:"center", gap:7, marginBottom:6 }}>
-            <span style={{ width:8, height:8, borderRadius:"50%", background:C.ok, display:"block", boxShadow:`0 0 8px ${C.ok}` }} />
-            <span style={{ color:"#ffffff", fontWeight:"600" }}>Système opérationnel</span>
-          </div>
+          {(() => {
+            const st = getEngineState(current?.rpm, current?.load);
+            return (
+              <div style={{ display:"flex", alignItems:"center", gap:7, marginBottom:6 }}>
+                <span style={{ width:8, height:8, borderRadius:"50%", background:st.dot, display:"block", boxShadow:`0 0 8px ${st.dot}` }} />
+                <span style={{ color:"#ffffff", fontWeight:"600" }}>Engin {st.label.toLowerCase()}</span>
+              </div>
+            );
+          })()}
           <div style={{ color:"#94a3b8", fontSize:10 }}>
             {current ? `${current.date?.slice(0,10)} · ${current.heure?.slice(11,19)}` : "—"}
           </div>
@@ -370,49 +663,6 @@ export default function App() {
       {/* ══════════ MAIN ══════════ */}
       <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
  
-=======
-        </div>
-
-        {/* ════════════════════════════════════════════════════ */}
-        {/* 📌 EMPLACEMENT DU LOGO DPE                            */}
-        {/*   Remplace <DpeLogo width={170} /> par :              */}
-        {/*   <img src="/dpe-logo.png" alt="DPE" style={{width:170}} /> */}
-        {/*   (mets le fichier dans frontend/public/)             */}
-        {/* ════════════════════════════════════════════════════ */}
-        <div style={{ padding:"18px 22px", borderBottom:`1px solid ${C.navyLight}`, display:"flex", justifyContent:"center" }}>
-          <DpeLogo width={170} />
-        </div>
-
-        <nav style={{ flex:1, padding:"14px 0", overflowY:"auto" }}>
-          {NAV_ITEMS.map(item => (
-            <button key={item.id} onClick={() => setPage(item.id)} style={{ width:"100%", display:"flex", alignItems:"center", gap:12, padding:"11px 22px", border:"none", background: page===item.id ? "rgba(255,205,0,0.1)" : "transparent", color: page===item.id ? C.yellow : "#cbd5e1", fontSize:13, cursor:"pointer", textAlign:"left", borderLeft: page===item.id ? `3px solid ${C.yellow}` : "3px solid transparent", transition:"all 0.15s", fontFamily:"inherit", fontWeight: page===item.id ? "600" : "400" }}>
-              <span style={{ fontSize:15 }}>{item.icon}</span>{item.label}
-            </button>
-          ))}
-        </nav>
-
-        <div style={{ padding:"18px 22px", borderTop:`1px solid ${C.navyLight}`, fontSize:11 }}>
-          <div style={{ display:"flex", alignItems:"center", gap:7, marginBottom:6 }}>
-            <span style={{ width:8, height:8, borderRadius:"50%", background:C.ok, display:"block", boxShadow:`0 0 8px ${C.ok}` }} />
-            <span style={{ color:"#ffffff", fontWeight:"600" }}>Système opérationnel</span>
-          </div>
-          <div style={{ color:"#94a3b8", fontSize:10 }}>
-            {current ? `${current.date?.slice(0,10)} · ${current.heure?.slice(11,19)}` : "—"}
-          </div>
-          <div style={{ marginTop:12, padding:"10px 0 0", borderTop:`1px solid ${C.navyLight}`, display:"flex", alignItems:"center", gap:9 }}>
-            <div style={{ width:30, height:30, borderRadius:"50%", background:`linear-gradient(135deg,${C.yellow},#ffa500)`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, color:C.navy, fontWeight:"700" }}>OG</div>
-            <div>
-              <div style={{ color:"#ffffff", fontSize:11, fontWeight:"600" }}>Othmane GAMZI</div>
-              <div style={{ color:"#94a3b8", fontSize:9 }}>Admin</div>
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      {/* ══════════ MAIN ══════════ */}
-      <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden" }}>
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
         <header style={{ height:60, borderBottom:`1px solid ${C.border}`, display:"flex", alignItems:"center", padding:"0 24px", justifyContent:"space-between", flexShrink:0, background:C.card }}>
           <div>
             <div style={{ display:"flex", alignItems:"center", gap:12 }}>
@@ -428,7 +678,7 @@ export default function App() {
           <div style={{ display:"flex", alignItems:"center", gap:14 }}>
             <div style={{ display:"flex", alignItems:"center", gap:8, background:C.bg, border:`1px solid ${C.border}`, borderRadius:9, padding:"7px 12px", fontSize:12, cursor:"pointer", color:C.text }}>
               <span style={{ width:8, height:8, borderRadius:"50%", background:C.yellow, display:"block" }} />
-              <span style={{ fontWeight:"600" }}>Train CR-4521</span>
+              <span style={{ fontWeight:"600" }}> F3000039</span>
               <span style={{ color:C.muted, fontSize:10 }}>▾</span>
             </div>
             <div style={{ fontSize:11, color:C.muted }}>
@@ -436,19 +686,11 @@ export default function App() {
             </div>
           </div>
         </header>
-<<<<<<< HEAD
  
         {/* ════ LIVE ════ */}
         {page === "live" && (
           <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:16, gap:12 }}>
  
-=======
-
-        {/* ════ LIVE ════ */}
-        {page === "live" && (
-          <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:16, gap:12 }}>
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
             {/* ✅ KPI Cards plus compacts pour donner plus de place à la map */}
             <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12, flexShrink:0 }}>
               {[
@@ -481,15 +723,9 @@ export default function App() {
                 );
               })}
             </div>
-<<<<<<< HEAD
  
             <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 380px", gap:12, minHeight:0 }}>
  
-=======
-
-            <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 380px", gap:12, minHeight:0 }}>
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
               {/* ════ MAP avec bouton plein écran ════ */}
               <div style={{ ...cardStyle, overflow:"hidden", position:"relative", display:"flex", flexDirection:"column" }}>
                 <div style={{ padding:"12px 18px", borderBottom:`1px solid ${C.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
@@ -510,11 +746,7 @@ export default function App() {
                   {renderMap()}
                 </div>
               </div>
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
               {/* ════ TABLE — Scroll naturel, latest en haut ════ */}
               <div style={{ ...cardStyle, display:"flex", flexDirection:"column", overflow:"hidden" }}>
                 <div style={{ padding:"12px 18px", borderBottom:`1px solid ${C.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
@@ -540,11 +772,7 @@ export default function App() {
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
             <div style={{ ...cardStyle, padding:"12px 22px", display:"flex", alignItems:"center", gap:18, flexShrink:0 }}>
               <div style={{ display:"flex", alignItems:"center", gap:8 }}>
                 <span style={{ width:9, height:9, borderRadius:"50%", background:C.yellow, display:"block" }} />
@@ -561,26 +789,32 @@ export default function App() {
             </div>
           </div>
         )}
-<<<<<<< HEAD
  
         {/* ════ ANALYTICS ════ */}
         {page === "analytics" && (
           <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:20, gap:16 }}>
  
-=======
-
-        {/* ════ ANALYTICS ════ */}
-        {page === "analytics" && (
-          <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:20, gap:16 }}>
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
             <div style={{ display:"flex", gap:8, flexShrink:0, alignItems:"center", justifyContent:"space-between" }}>
               <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
-                {PARAMS.map(p => (
-                  <button key={p.key} onClick={() => setActiveParam(p.key)} style={{ padding:"9px 16px", borderRadius:9, border: activeParam===p.key ? `1px solid ${p.color}66` : `1px solid ${C.border}`, cursor:"pointer", fontSize:12, fontFamily:"inherit", background: activeParam===p.key ? `rgba(${hexToRgb(p.color)},0.08)` : C.card, color: activeParam===p.key ? p.color : C.textSec, fontWeight: activeParam===p.key ? "600" : "500", transition:"all 0.15s", boxShadow: activeParam===p.key ? "0 1px 3px rgba(10,23,51,0.06)" : "none" }}>
+                {PARAMS.map(p => {
+                  const isActive = activeParams.includes(p.key);
+                  return (
+                    <button key={p.key} onClick={() => toggleParam(p.key)} style={{
+                    padding:"9px 14px", borderRadius:9,
+                    border: isActive ? `1.5px solid ${p.color}` : `1px solid ${C.border}`,
+                    cursor:"pointer", fontSize:12, fontFamily:"inherit",
+                    background: isActive ? `rgba(${hexToRgb(p.color)},0.08)` : C.card,
+                    color: isActive ? p.color : C.textSec,
+                    fontWeight: isActive ? "600" : "500",
+                    transition:"all 0.15s",
+                    boxShadow: isActive ? "0 1px 3px rgba(10,23,51,0.08)" : "none",
+                    display:"flex", alignItems:"center", gap:6
+              }}>
+                    {isActive && <span style={{ fontSize:10 }}>✓</span>}
                     {p.icon} {p.label}
-                  </button>
-                ))}
+                </button>
+              );
+            })}
               </div>
               <div style={{ fontSize:11, color:C.textSec, background:C.card, border:`1px solid ${C.border}`, borderRadius:8, padding:"8px 14px", whiteSpace:"nowrap", display:"flex", alignItems:"center", gap:7 }}>
                 <span>📅</span>
@@ -589,41 +823,29 @@ export default function App() {
                 </span>
               </div>
             </div>
-<<<<<<< HEAD
  
             <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 330px", gap:16, minHeight:0 }}>
  
-=======
-
-            <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 330px", gap:16, minHeight:0 }}>
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
               <div style={{ ...cardStyle, overflow:"hidden", display:"flex", flexDirection:"column" }}>
                 <div style={{ padding:"14px 18px", borderBottom:`1px solid ${C.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                   <div>
-                    <div style={{ fontSize:14, fontWeight:"600", color:C.text }}>{param.icon} Évolution {param.label.toLowerCase()}</div>
-                    <div style={{ fontSize:11, color:C.muted, marginTop:2 }}>{vals.length.toLocaleString()} mesures · Unité : {param.unit}</div>
+                    <div style={{ fontSize:14, fontWeight:"600", color:C.text }}>
+                      {activeParams.length === 1
+                        ? `${param.icon} Évolution ${param.label.toLowerCase()}`
+                        : `📊 Comparaison de ${activeParams.length} paramètres`}
+                    </div>
+                    <div style={{ fontSize:11, color:C.muted, marginTop:2 }}>
+                      {activeParams.length === 1
+                        ? `${vals.length.toLocaleString()} mesures · Unité : ${param.unit}`
+                        : activeParams.map(k => PARAMS.find(p => p.key === k)?.label).join(' · ')}
+                    </div>
                   </div>
                 </div>
                 <div style={{ flex:1, minHeight:0, padding:8 }}>
-                  {chartData.length > 0 ? (
+                  {plotTraces.length > 0 && plotTraces[0].x.length > 0 ? (
                     <Plot
-                      data={[{
-                        x: chartX, y: chartY,
-                        type:"scatter", mode:"lines",
-                        line:{ color:param.color, width:2, shape:"linear" },
-                        fill:"tozeroy", fillcolor: param.color+"12",
-                        name: param.label,
-                        hovertemplate: `<b>${param.label}</b><br>%{x}<br>%{y} ${param.unit}<extra></extra>`,
-                      }]}
-                      layout={{
-                        paper_bgcolor:"rgba(0,0,0,0)", plot_bgcolor:"rgba(0,0,0,0)",
-                        font:{ family:"'Inter',sans-serif", color:C.textSec, size:11 },
-                        margin:{ t:10, r:14, b:50, l:55 },
-                        xaxis:{ gridcolor:C.borderSoft, tickcolor:C.muted, linecolor:C.border, type:"date", tickformat:"%d/%m %H:%M" },
-                        yaxis:{ gridcolor:C.borderSoft, tickcolor:C.muted, linecolor:C.border, title:{ text:`${param.label} (${param.unit})`, font:{color:C.textSec, size:11} } },
-                        showlegend:false, hovermode:"x unified",
-                      }}
+                      data={plotTraces}
+                      layout={plotLayout}
                       config={{ displayModeBar:true, responsive:true, displaylogo:false, modeBarButtonsToRemove:["lasso2d","select2d"] }}
                       style={{ width:"100%", height:"100%" }}
                       useResizeHandler
@@ -633,11 +855,7 @@ export default function App() {
                   )}
                 </div>
               </div>
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
               <div style={{ display:"flex", flexDirection:"column", gap:12, overflowY:"auto" }}>
                 {[
                   { label:"Valeur actuelle", value:statCurrent.toFixed(1), sub: current ? `${current.date?.slice(0,10)} · ${current.heure?.slice(11,19)}` : "", color:param.color },
@@ -653,11 +871,7 @@ export default function App() {
                     <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>{s.sub}</div>
                   </div>
                 ))}
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
                 <div style={{ ...cardStyle, padding:"14px 16px" }}>
                   <div style={{ fontSize:12, fontWeight:"700", color:C.text, marginBottom:10 }}>Statistiques détaillées</div>
                   {[
@@ -672,11 +886,7 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-<<<<<<< HEAD
  
-=======
-
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
                 <div style={{ ...cardStyle, padding:"14px 16px" }}>
                   <div style={{ fontSize:12, fontWeight:"700", color:C.text, marginBottom:8 }}>Distribution température</div>
                   <div style={{ display:"flex", alignItems:"center", gap:10 }}>
@@ -703,27 +913,429 @@ export default function App() {
             </div>
           </div>
         )}
-<<<<<<< HEAD
  
-=======
+        {/* ════ PAGE ALERTES ════ */}
+{page === "alerts" && (
+  <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:20, gap:16 }}>
 
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
-        {["assets","alerts","reports","settings"].includes(page) && (
-          <div style={{ flex:1, display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", gap:14, padding:40 }}>
-            <div style={{ width:80, height:80, borderRadius:20, background:C.card, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:36, boxShadow:"0 1px 3px rgba(10,23,51,0.04)" }}>
-              {NAV_ITEMS.find(n=>n.id===page)?.icon}
+    {/* Tabs + bouton créer */}
+    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", flexShrink:0 }}>
+      <div style={{ display:"flex", gap:6 }}>
+        <button onClick={() => setAlertsTab("config")} style={{
+          padding:"9px 16px", borderRadius:9, border:`1px solid ${alertsTab==="config" ? C.navy : C.border}`,
+          background: alertsTab==="config" ? C.navy : C.card, color: alertsTab==="config" ? "#fff" : C.text,
+          cursor:"pointer", fontSize:12, fontWeight:"600", fontFamily:"inherit"
+        }}>⚙️ Configuration ({alerts.length})</button>
+        <button onClick={() => setAlertsTab("history")} style={{
+          padding:"9px 16px", borderRadius:9, border:`1px solid ${alertsTab==="history" ? C.navy : C.border}`,
+          background: alertsTab==="history" ? C.navy : C.card, color: alertsTab==="history" ? "#fff" : C.text,
+          cursor:"pointer", fontSize:12, fontWeight:"600", fontFamily:"inherit"
+        }}>📬 Historique ({alertsHistory.length})</button>
+      </div>
+      {alertsTab === "config" && (
+        <button onClick={() => setShowNewAlert(true)} style={{
+          padding:"9px 16px", borderRadius:9, border:"none",
+          background:C.yellow, color:C.navy, cursor:"pointer",
+          fontSize:12, fontWeight:"700", fontFamily:"inherit"
+        }}>+ Nouvelle alerte</button>
+      )}
+    </div>
+
+    {/* TAB CONFIG */}
+    {alertsTab === "config" && (
+      <div style={{ ...cardStyle, flex:1, overflow:"auto" }}>
+        {alerts.length === 0 ? (
+          <div style={{ padding:40, textAlign:"center", color:C.muted }}>
+            <div style={{ fontSize:36, marginBottom:10 }}>🔔</div>
+            <div style={{ fontSize:14, fontWeight:"600", color:C.text, marginBottom:6 }}>Aucune alerte configurée</div>
+            <div style={{ fontSize:12 }}>Clique sur "+ Nouvelle alerte" pour commencer</div>
+          </div>
+        ) : (
+          <div>
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr 90px 60px", padding:"12px 18px", fontSize:9, color:C.muted, letterSpacing:1, textTransform:"uppercase", borderBottom:`1px solid ${C.borderSoft}`, background:C.bg, fontWeight:"600" }}>
+              <span>Nom</span><span>Conditions</span><span>Destinataires</span><span>Statut</span><span></span>
             </div>
-            <div style={{ fontSize:20, color:C.text, fontWeight:"600" }}>{NAV_ITEMS.find(n=>n.id===page)?.label}</div>
-            <div style={{ fontSize:12, color:C.muted }}>Module en cours de développement</div>
-            <div style={{ fontSize:10, color:C.muted, background:C.yellowSoft, padding:"5px 12px", borderRadius:12, fontWeight:"600", letterSpacing:0.5 }}>● BIENTÔT DISPONIBLE</div>
+            {alerts.map(a => (
+              <div key={a.id} style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr 90px 60px", padding:"14px 18px", fontSize:12, borderBottom:`1px solid ${C.borderSoft}`, alignItems:"center" }}>
+                <div style={{ fontWeight:"600", color:C.text }}>{a.name}</div>
+                <div style={{ fontSize:11, color:C.textSec }}>
+                  {a.conditions.map((c,i) => (
+                    <span key={i} style={{ display:"inline-block", background:C.bg, padding:"2px 8px", borderRadius:4, marginRight:5, border:`1px solid ${C.border}` }}>
+                      {PARAMS.find(p=>p.key===c.parameter)?.label} {c.operator} {c.value}
+                    </span>
+                  ))}
+                </div>
+                <div style={{ fontSize:10, color:C.muted }}>{a.recipients.join(", ")}</div>
+                <button onClick={() => toggleAlert(a.id)} style={{
+                  padding:"4px 10px", borderRadius:6, border:"none", cursor:"pointer",
+                  background: a.active ? C.ok+"20" : C.muted+"20",
+                  color: a.active ? C.ok : C.muted,
+                  fontSize:10, fontWeight:"700", fontFamily:"inherit"
+                }}>● {a.active ? "ACTIVE" : "INACTIVE"}</button>
+                <button onClick={() => deleteAlert(a.id)} style={{
+                  background:"transparent", border:"none", color:C.danger,
+                  cursor:"pointer", fontSize:16, padding:4
+                }}>🗑️</button>
+              </div>
+            ))}
           </div>
         )}
       </div>
-<<<<<<< HEAD
- 
-=======
+    )}
 
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
+    {/* TAB HISTORIQUE */}
+    {alertsTab === "history" && (
+      <div style={{ ...cardStyle, flex:1, overflow:"auto" }}>
+        {alertsHistory.length === 0 ? (
+          <div style={{ padding:40, textAlign:"center", color:C.muted }}>
+            <div style={{ fontSize:36, marginBottom:10 }}>📬</div>
+            <div style={{ fontSize:14, fontWeight:"600", color:C.text, marginBottom:6 }}>Aucune alerte déclenchée</div>
+            <div style={{ fontSize:12 }}>L'historique apparaîtra ici dès qu'une alerte se déclenche</div>
+          </div>
+        ) : (
+          <div>
+            <div style={{ display:"grid", gridTemplateColumns:"180px 1fr 2fr 80px", padding:"12px 18px", fontSize:9, color:C.muted, letterSpacing:1, textTransform:"uppercase", borderBottom:`1px solid ${C.borderSoft}`, background:C.bg, fontWeight:"600" }}>
+              <span>Date & heure</span><span>Alerte</span><span>Conditions déclenchées</span><span>Email</span>
+            </div>
+            {alertsHistory.map(h => (
+              <div key={h.id} style={{ display:"grid", gridTemplateColumns:"180px 1fr 2fr 80px", padding:"12px 18px", fontSize:11, borderBottom:`1px solid ${C.borderSoft}`, alignItems:"center", borderLeft:`3px solid ${C.danger}` }}>
+                <div style={{ fontSize:11, color:C.textSec }}>{h.data_date?.slice(0,10)} {h.data_heure?.slice(11,19)}</div>
+                <div style={{ fontWeight:"600", color:C.text }}>{h.alert_name}</div>
+                <div style={{ fontSize:10, color:C.textSec }}>
+                  {h.conditions.map((c,i) => (
+                    <div key={i} style={{ marginBottom:2 }}>• {c}</div>
+                  ))}
+                </div>
+                <span style={{
+                  fontSize:10, padding:"3px 8px", borderRadius:5, fontWeight:"600",
+                  background: h.email_sent ? C.ok+"15" : C.danger+"15",
+                  color: h.email_sent ? C.ok : C.danger
+                }}>{h.email_sent ? "✅ Envoyé" : "❌ Échec"}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* MODAL Nouvelle alerte */}
+    {showNewAlert && (
+      <div style={{ position:"fixed", inset:0, background:"rgba(10,23,51,0.5)", zIndex:9500, display:"flex", alignItems:"center", justifyContent:"center" }}>
+        <div style={{ background:C.card, borderRadius:14, width:560, maxHeight:"90vh", overflow:"auto", boxShadow:"0 20px 60px rgba(0,0,0,0.3)" }}>
+          <div style={{ padding:"18px 24px", borderBottom:`1px solid ${C.border}`, display:"flex", justifyContent:"space-between", alignItems:"center", background:C.navy, color:"#fff", borderRadius:"14px 14px 0 0" }}>
+            <div style={{ fontSize:16, fontWeight:"700" }}>🔔 Nouvelle alerte</div>
+            <button onClick={() => setShowNewAlert(false)} style={{ background:"transparent", border:"none", color:"#fff", fontSize:22, cursor:"pointer" }}>✕</button>
+          </div>
+
+          <div style={{ padding:24, display:"flex", flexDirection:"column", gap:16 }}>
+            <div>
+              <label style={{ fontSize:11, color:C.muted, fontWeight:"600", textTransform:"uppercase", letterSpacing:1, marginBottom:6, display:"block" }}>Nom de l'alerte</label>
+              <input value={newAlert.name} onChange={e => setNewAlert({...newAlert, name: e.target.value})}
+                placeholder="Ex: Surchauffe moteur critique"
+                style={{ width:"100%", padding:"10px 14px", borderRadius:8, border:`1px solid ${C.border}`, fontSize:13, outline:"none", fontFamily:"inherit", boxSizing:"border-box" }} />
+            </div>
+
+            <div>
+              <label style={{ fontSize:11, color:C.muted, fontWeight:"600", textTransform:"uppercase", letterSpacing:1, marginBottom:6, display:"block" }}>Conditions (toutes doivent être vraies)</label>
+              {newAlert.conditions.map((cond, i) => (
+                <div key={i} style={{ display:"flex", gap:6, marginBottom:6 }}>
+                  <select value={cond.parameter} onChange={e => {
+                    const cs = [...newAlert.conditions]; cs[i].parameter = e.target.value;
+                    setNewAlert({...newAlert, conditions: cs});
+                  }} style={{ flex:1, padding:"8px 10px", borderRadius:8, border:`1px solid ${C.border}`, fontSize:12, fontFamily:"inherit" }}>
+                    {PARAMS.map(p => <option key={p.key} value={p.key}>{p.icon} {p.label}</option>)}
+                  </select>
+                  <select value={cond.operator} onChange={e => {
+                    const cs = [...newAlert.conditions]; cs[i].operator = e.target.value;
+                    setNewAlert({...newAlert, conditions: cs});
+                  }} style={{ width:60, padding:"8px 10px", borderRadius:8, border:`1px solid ${C.border}`, fontSize:12, fontFamily:"inherit" }}>
+                    <option value=">">&gt;</option>
+                    <option value="<">&lt;</option>
+                    <option value=">=">≥</option>
+                    <option value="<=">≤</option>
+                    <option value="==">=</option>
+                  </select>
+                  <input type="number" value={cond.value} onChange={e => {
+                    const cs = [...newAlert.conditions]; cs[i].value = e.target.value;
+                    setNewAlert({...newAlert, conditions: cs});
+                  }} placeholder="Valeur" style={{ width:90, padding:"8px 10px", borderRadius:8, border:`1px solid ${C.border}`, fontSize:12, fontFamily:"inherit", outline:"none" }} />
+                  {newAlert.conditions.length > 1 && (
+                    <button onClick={() => {
+                      const cs = newAlert.conditions.filter((_,j) => j !== i);
+                      setNewAlert({...newAlert, conditions: cs});
+                    }} style={{ width:32, background:C.danger+"15", color:C.danger, border:"none", borderRadius:6, cursor:"pointer", fontSize:14 }}>×</button>
+                  )}
+                </div>
+              ))}
+              <button onClick={() => setNewAlert({...newAlert, conditions: [...newAlert.conditions, { parameter:"temperature", operator:">", value:"" }]})}
+                style={{ padding:"6px 12px", background:C.bg, border:`1px dashed ${C.border}`, borderRadius:6, fontSize:11, cursor:"pointer", color:C.textSec, marginTop:4, fontFamily:"inherit" }}>
+                + Ajouter une condition
+              </button>
+            </div>
+
+            <div>
+              <label style={{ fontSize:11, color:C.muted, fontWeight:"600", textTransform:"uppercase", letterSpacing:1, marginBottom:6, display:"block" }}>Destinataires (séparés par des virgules)</label>
+              <input value={newAlert.recipients} onChange={e => setNewAlert({...newAlert, recipients: e.target.value})}
+                placeholder="email1@colas.com, email2@colas.com"
+                style={{ width:"100%", padding:"10px 14px", borderRadius:8, border:`1px solid ${C.border}`, fontSize:13, outline:"none", fontFamily:"inherit", boxSizing:"border-box" }} />
+            </div>
+
+            <div style={{ display:"flex", gap:8, justifyContent:"flex-end", marginTop:8 }}>
+              <button onClick={() => setShowNewAlert(false)} style={{ padding:"10px 18px", background:C.bg, border:`1px solid ${C.border}`, borderRadius:8, cursor:"pointer", fontSize:13, fontFamily:"inherit", color:C.text }}>Annuler</button>
+              <button onClick={createAlert} style={{ padding:"10px 18px", background:C.yellow, color:C.navy, border:"none", borderRadius:8, cursor:"pointer", fontSize:13, fontWeight:"700", fontFamily:"inherit" }}>✓ Créer l'alerte</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+)}
+
+
+{/* ════ PAGE RAPPORTS ════ */}
+{page === "reports" && (() => {
+  
+  // Fonction pour rendre une cellule selon la colonne
+  const renderCell = (m, key) => {
+    const tempColor = m.temperature > 85 ? C.danger : m.temperature > 75 ? C.warn : C.ok;
+    const batColor  = m.battery < 22 ? C.danger : m.battery < 24 ? C.warn : C.ok;
+    const empty = (v) => v && v.trim() ? v : <span style={{ color:C.muted, fontStyle:"italic" }}>—</span>;
+    
+    switch(key) {
+      case 'id':          return <span style={{ fontWeight:"700", color:C.navy }}>{m.id}</span>;
+      case 'numero_gm':   return <span style={{ color:C.textSec }}>{empty(m.numero_gm)}</span>;
+      case 'agence':      return <span style={{ color:C.text, fontSize:10 }}>{empty(m.agence)}</span>;
+      case 'type':        return <span style={{ color:C.text }}>{empty(m.type)}</span>;
+      case 'marque':      return <span style={{ color:C.textSec, fontSize:10 }}>{empty(m.marque)}</span>;
+      case 'last_update': return <span style={{ color:C.muted, fontSize:10 }}>{m.last_update.slice(0,10)} {m.last_update.slice(11,19)}</span>;
+      case 'temperature': return <span style={{ color:tempColor, fontWeight:"600" }}>{m.temperature.toFixed(1)}</span>;
+      case 'fuel_rate':   return <span style={{ color:C.text, fontWeight:"500" }}>{m.fuel_rate.toFixed(1)}</span>;
+      case 'fuel_level':  return <span style={{ color:C.text, fontWeight:"500" }}>{m.fuel_level.toFixed(1)}</span>;
+      case 'battery':     return <span style={{ color:batColor, fontWeight:"600" }}>{m.battery.toFixed(1)}</span>;
+      case 'etat': {
+        const st = getEngineState(m.rpm, m.load);
+        return (
+          <span style={{ background:st.bg, color:st.color, padding:"3px 8px",
+            borderRadius:5, fontSize:10, fontWeight:"700", display:"inline-flex", alignItems:"center", gap:4 }}>
+            <span style={{ width:5, height:5, borderRadius:"50%", background:st.dot }} />
+            {st.label}
+          </span>
+        );
+      }
+      case 'position': return (
+        <button onClick={() => setMapPopup({ lat: m.latitude, lon: m.longitude, id: m.id })}
+          style={{ background:C.yellowSoft, color:C.navy, border:`1px solid ${C.yellow}88`,
+            borderRadius:6, padding:"4px 10px", fontSize:10, cursor:"pointer",
+            fontWeight:"600", fontFamily:"inherit", display:"flex", alignItems:"center", gap:4 }}>
+        📍 Voir
+        </button>
+      );
+
+      case 'engine_hours': return <span style={{ color:C.text, fontWeight:"500" }}>{m.engine_hours?.toFixed(0)} h</span>;
+      case 'p_oil':        return <span style={{ color:C.text, fontWeight:"500" }}>{m.p_oil?.toFixed(2)} bar</span>;
+      case 'axle_temp': {
+        const c = m.axle_temp > 80 ? C.danger : m.axle_temp > 60 ? C.warn : C.ok;
+        return <span style={{ color: c, fontWeight:"600" }}>{m.axle_temp?.toFixed(1)} °C</span>;
+      }
+      default: return null;
+    }
+  };
+  
+  const handleDragStart = (idx) => setDraggedColIdx(idx);
+  const handleDragOver  = (e) => e.preventDefault();
+  const handleDrop      = (dropIdx) => {
+    if (draggedColIdx === null || draggedColIdx === dropIdx) return;
+    const newCols = [...fleetCols];
+    const [removed] = newCols.splice(draggedColIdx, 1);
+    newCols.splice(dropIdx, 0, removed);
+    setFleetCols(newCols);
+    setDraggedColIdx(null);
+  };
+  
+  const gridTemplate = fleetCols.map(c => `${c.width}px`).join(' ');
+  const totalWidth = fleetCols.reduce((s,c) => s + c.width, 0);
+  
+  return (
+    <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:20, gap:16 }}>
+      
+      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", flexShrink:0 }}>
+        <div>
+          <div style={{ fontSize:16, fontWeight:"700", color:C.text }}>📋 Rapport de flotte</div>
+          <div style={{ fontSize:11, color:C.muted, marginTop:3 }}>
+            {fleet.length} engins • Dernières données par machine • 👉 Glisse les colonnes pour les réorganiser
+          </div>
+        </div>
+        <div style={{ display:"flex", gap:8 }}>
+          <button onClick={() => setFleetCols(DEFAULT_FLEET_COLUMNS)}
+            style={{ padding:"9px 14px", borderRadius:8, border:`1px solid ${C.border}`,
+              background:C.card, color:C.textSec, cursor:"pointer", fontSize:11, fontFamily:"inherit" }}>
+            ↺ Réinitialiser
+          </button>
+          <button onClick={() => axios.get(`${API}/api/fleet`).then(r => setFleet(r.data))}
+            style={{ padding:"9px 14px", borderRadius:8, border:`1px solid ${C.border}`,
+              background:C.card, color:C.text, cursor:"pointer", fontSize:12, fontFamily:"inherit", fontWeight:"500" }}>
+            🔄 Actualiser
+          </button>
+          <button onClick={downloadFleetReport}
+            style={{ padding:"9px 18px", borderRadius:8, border:"none",
+              background:C.yellow, color:C.navy, cursor:"pointer",
+              fontSize:12, fontWeight:"700", fontFamily:"inherit",
+              display:"flex", alignItems:"center", gap:6 }}>
+            📥 Télécharger Excel
+          </button>
+        </div>
+      </div>
+
+      <div style={{ ...cardStyle, flex:1, overflow:"auto" }}>
+        <div style={{ minWidth: totalWidth }}>
+          
+          {/* Headers draggables */}
+          <div style={{
+            display:"grid", gridTemplateColumns: gridTemplate,
+            padding:"12px 16px", fontSize:9, color:C.muted, letterSpacing:1, textTransform:"uppercase",
+            borderBottom:`2px solid ${C.border}`, background:C.bg, fontWeight:"700",
+            position:"sticky", top:0, zIndex:1
+          }}>
+            {fleetCols.map((col, idx) => (
+              <span key={col.key}
+                draggable
+                onDragStart={() => handleDragStart(idx)}
+                onDragOver={handleDragOver}
+                onDrop={() => handleDrop(idx)}
+                style={{
+                  cursor: "grab",
+                  padding: "4px 6px",
+                  borderRadius: 4,
+                  background: draggedColIdx === idx ? C.yellowSoft : "transparent",
+                  border: draggedColIdx === idx ? `1px dashed ${C.yellow}` : "1px dashed transparent",
+                  transition: "all 0.15s",
+                  userSelect: "none",
+                  display: "flex", alignItems: "center", gap: 4
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = C.borderSoft}
+                onMouseLeave={e => { if (draggedColIdx !== idx) e.currentTarget.style.background = "transparent"; }}
+              >
+                <span style={{ color:C.muted, fontSize:10, fontWeight:"400" }}>⋮⋮</span>
+                {col.label}
+              </span>
+            ))}
+          </div>
+          
+          {/* Lignes */}
+          {fleet.map((m, i) => (
+            <div key={m.id} style={{
+              display:"grid", gridTemplateColumns: gridTemplate,
+              padding:"12px 16px", fontSize:11, borderBottom:`1px solid ${C.borderSoft}`,
+              background: i%2===0 ? C.card : C.bg,
+              alignItems:"center"
+            }}>
+              {fleetCols.map(col => (
+                <div key={col.key} style={{ padding:"0 6px" }}>
+                  {renderCell(m, col.key)}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div style={{ fontSize:10, color:C.muted, textAlign:"center", flexShrink:0 }}>
+        Affichage de {fleet.length} engins • Mis à jour {new Date().toLocaleString('fr-FR')}
+      </div>
+    </div>
+  );
+})()}
+
+{/* ════ PAGE HISTORIQUE PARCOURS ════ */}
+{page === "history" && (
+  <div style={{ flex:1, display:"flex", flexDirection:"column", overflow:"hidden", padding:20, gap:16 }}>
+    
+    {/* Barre de filtres */}
+    <div style={{ ...cardStyle, padding:"14px 18px", display:"flex", gap:14, alignItems:"flex-end", flexShrink:0, flexWrap:"wrap" }}>
+      <div>
+        <div style={{ fontSize:10, color:C.muted, fontWeight:"600", textTransform:"uppercase", letterSpacing:1, marginBottom:5 }}>🚂 Engin</div>
+        <select value={historyEngine} onChange={e => setHistoryEngine(e.target.value)}
+          style={{ padding:"9px 12px", borderRadius:8, border:`1px solid ${C.border}`, fontSize:13, fontFamily:"inherit", minWidth:140, background:C.card }}>
+          {historyEngines.map(e => <option key={e.id} value={e.id}>{e.id}</option>)}
+        </select>
+      </div>
+      
+      <div>
+        <div style={{ fontSize:10, color:C.muted, fontWeight:"600", textTransform:"uppercase", letterSpacing:1, marginBottom:5 }}>📅 Date début</div>
+        <input type="date" value={historyStart} onChange={e => setHistoryStart(e.target.value)}
+          style={{ padding:"9px 12px", borderRadius:8, border:`1px solid ${C.border}`, fontSize:13, fontFamily:"inherit", background:C.card }} />
+      </div>
+      
+      <div>
+        <div style={{ fontSize:10, color:C.muted, fontWeight:"600", textTransform:"uppercase", letterSpacing:1, marginBottom:5 }}>📅 Date fin</div>
+        <input type="date" value={historyEnd} onChange={e => setHistoryEnd(e.target.value)}
+          style={{ padding:"9px 12px", borderRadius:8, border:`1px solid ${C.border}`, fontSize:13, fontFamily:"inherit", background:C.card }} />
+      </div>
+      
+      <button onClick={searchHistory} disabled={historyLoading}
+        style={{ padding:"10px 22px", borderRadius:8, border:"none",
+          background:C.yellow, color:C.navy, cursor:"pointer",
+          fontSize:13, fontWeight:"700", fontFamily:"inherit" }}>
+        {historyLoading ? "⏳ Chargement..." : "🔍 Rechercher"}
+      </button>
+      
+      <div style={{ marginLeft:"auto", fontSize:11, color:C.muted }}>
+        {historyPoints.length > 0 && (
+          <>📍 <b style={{ color:C.text }}>{historyPoints.length}</b> points · 
+          du {historyPoints[0].date} au {historyPoints[historyPoints.length-1].date}</>
+        )}
+      </div>
+    </div>
+    
+    {/* Carte */}
+    <div style={{ ...cardStyle, flex:1, overflow:"hidden" }}>
+      {historyPoints.length > 0 ? (
+        <MapContainer center={[historyPoints[0].latitude, historyPoints[0].longitude]} zoom={9} style={{ height:"100%", width:"100%" }}>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
+          <TileLayer url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png" attribution="© OpenRailwayMap" opacity={0.7} />
+          
+          <Polyline positions={historyPoints.map(p => [p.latitude, p.longitude])} color={C.navy} weight={3.5} opacity={0.85} />
+          
+          <Marker position={[historyPoints[0].latitude, historyPoints[0].longitude]}
+            icon={new L.DivIcon({
+              html: `<div style="width:32px;height:32px;border-radius:50%;background:${C.ok};border:3px solid white;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,0.3);">D</div>`,
+              iconSize:[32,32], iconAnchor:[16,16], className:""
+            })}>
+            <Popup><b>🏁 Départ</b><br/>{historyPoints[0].date} {historyPoints[0].heure?.slice(11,19)}</Popup>
+          </Marker>
+          
+          <Marker position={[historyPoints[historyPoints.length-1].latitude, historyPoints[historyPoints.length-1].longitude]}
+            icon={new L.DivIcon({
+              html: `<div style="width:32px;height:32px;border-radius:50%;background:${C.danger};border:3px solid white;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,0.3);">F</div>`,
+              iconSize:[32,32], iconAnchor:[16,16], className:""
+            })}>
+            <Popup><b>🎯 Arrivée</b><br/>{historyPoints[historyPoints.length-1].date} {historyPoints[historyPoints.length-1].heure?.slice(11,19)}</Popup>
+          </Marker>
+        </MapContainer>
+      ) : (
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", height:"100%", flexDirection:"column", gap:10, color:C.muted }}>
+          <div style={{ fontSize:48 }}>🗺️</div>
+          <div style={{ fontSize:14, fontWeight:"600", color:C.text }}>Aucun trajet à afficher</div>
+          <div style={{ fontSize:12 }}>Sélectionne un engin et une période, puis clique sur "Rechercher"</div>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
+{/* Pages encore vides */}
+{["assets","settings"].includes(page) && (
+  <div style={{ flex:1, display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", gap:14, padding:40 }}>
+    <div style={{ width:80, height:80, borderRadius:20, background:C.card, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:36, boxShadow:"0 1px 3px rgba(10,23,51,0.04)" }}>
+      {NAV_ITEMS.find(n=>n.id===page)?.icon}
+    </div>
+    <div style={{ fontSize:20, color:C.text, fontWeight:"600" }}>{NAV_ITEMS.find(n=>n.id===page)?.label}</div>
+    <div style={{ fontSize:12, color:C.muted }}>Module en cours de développement</div>
+    <div style={{ fontSize:10, color:C.muted, background:C.yellowSoft, padding:"5px 12px", borderRadius:12, fontWeight:"600", letterSpacing:0.5 }}>● BIENTÔT DISPONIBLE</div>
+  </div>
+)}
+      </div>
+ 
       {/* ════════════ MAP FULLSCREEN OVERLAY ════════════ */}
       {mapFullscreen && (
         <div style={{ position:"fixed", inset:0, zIndex:9999, background:C.card, display:"flex", flexDirection:"column" }}>
@@ -732,7 +1344,7 @@ export default function App() {
               <DpeLogo width={110} />
               <div>
                 <div style={{ fontSize:15, fontWeight:"700" }}>Carte réseau ferroviaire — Plein écran</div>
-                <div style={{ fontSize:11, color:"#cbd5e1", marginTop:2 }}>Train CR-4521 · {current?.date?.slice(0,10)} {current?.heure?.slice(11,19)}</div>
+                <div style={{ fontSize:11, color:"#cbd5e1", marginTop:2 }}> F3000039 · {current?.date?.slice(0,10)} {current?.heure?.slice(11,19)}</div>
               </div>
             </div>
             <button onClick={() => setMapFullscreen(false)} style={{ background:C.yellow, color:C.navy, border:"none", borderRadius:8, padding:"8px 14px", fontSize:13, fontWeight:"600", cursor:"pointer", display:"flex", alignItems:"center", gap:6, fontFamily:"inherit" }}>
@@ -742,7 +1354,6 @@ export default function App() {
           <div style={{ flex:1 }}>
             {renderMap("100%")}
           </div>
-<<<<<<< HEAD
           const API = "http://127.0.0.1:5000";
         </div>
       )}
@@ -779,22 +1390,34 @@ export default function App() {
                 </div>
               </div>
             </div>
-            <button onClick={() => setChatOpen(false)} style={{ background:"transparent", border:"none", color:"#fff", fontSize:20, cursor:"pointer", padding:4 }}>✕</button>
+            <div style={{ display:"flex", gap:4 }}>
+              <button onClick={() => setChatMessages([
+                { role: "bot", text: "Bonjour ! Je suis l'assistant MyMatics. Pose-moi des questions sur les données télémétriques du train CR-4521 🚂" }
+              ])} title="Nouvelle conversation"
+                style={{ background:"transparent", border:"none", color:"#fff", fontSize:16, cursor:"pointer", padding:4 }}>
+                🔄
+              </button>
+              <button onClick={() => setChatOpen(false)} style={{ background:"transparent", border:"none", color:"#fff", fontSize:20, cursor:"pointer", padding:4 }}>✕</button>
+            </div>
+
           </div>
 
           <div style={{ flex:1, overflowY:"auto", padding:"14px", background:C.bg }}>
             {chatMessages.map((m, i) => (
-              <div key={i} style={{ display:"flex", justifyContent: m.role==="user" ? "flex-end" : "flex-start", marginBottom:10 }}>
-                <div style={{
-                  maxWidth:"80%", padding:"9px 13px", borderRadius:12,
-                  background: m.role==="user" ? C.navy : C.card,
-                  color: m.role==="user" ? "#fff" : C.text,
-                  fontSize:12.5, lineHeight:1.5,
-                  border: m.role==="user" ? "none" : `1px solid ${C.border}`,
-                  whiteSpace:"pre-wrap"
-                }}>
-                  {m.text}
+              <div key={i} style={{ marginBottom:10 }}>
+                <div style={{ display:"flex", justifyContent: m.role==="user" ? "flex-end" : "flex-start" }}>
+                  <div style={{
+                    maxWidth:"80%", padding:"9px 13px", borderRadius:12,
+                    background: m.role==="user" ? C.navy : C.card,
+                    color: m.role==="user" ? "#fff" : C.text,
+                    fontSize:12.5, lineHeight:1.5,
+                    border: m.role==="user" ? "none" : `1px solid ${C.border}`,
+                    whiteSpace:"pre-wrap"
+                  }}>
+                    {m.text}
+                  </div>
                 </div>
+                {m.viz && <ChatViz viz={m.viz} />}
               </div>
             ))}
             {chatLoading && (
@@ -812,10 +1435,24 @@ export default function App() {
                 value={chatInput}
                 onChange={e => setChatInput(e.target.value)}
                 onKeyDown={e => { if (e.key === "Enter") sendChat(); }}
-                placeholder="Posez votre question..."
+                placeholder={isListening ? "🎤 Je vous écoute..." : "Posez votre question..."}
                 disabled={chatLoading}
                 style={{ flex:1, padding:"9px 12px", borderRadius:8, border:`1px solid ${C.border}`, fontSize:12.5, outline:"none", fontFamily:"inherit", background:C.bg }}
               />
+              <button
+                onClick={toggleVoice}
+                disabled={chatLoading}
+                title={isListening ? "Arrêter l'écoute" : "Parler"}
+                style={{
+                  padding:"0 12px", borderRadius:8, cursor:"pointer",
+                  border:`1px solid ${isListening ? C.danger : C.border}`,
+                  background: isListening ? C.danger : C.bg,
+                  color: isListening ? "#fff" : C.navy,
+                  fontSize:15, fontFamily:"inherit"
+                }}
+              >
+                {isListening ? "⏹" : "🎙️"}
+              </button>
               <button onClick={sendChat} disabled={chatLoading || !chatInput.trim()} style={{
                 padding:"0 16px", borderRadius:8, border:"none", cursor:"pointer",
                 background: chatInput.trim() && !chatLoading ? C.yellow : C.border,
@@ -825,10 +1462,49 @@ export default function App() {
               </button>
             </div>
           </div>
-=======
->>>>>>> ea5d053dcb31bfc19bc50360ab64e69ddd796de5
         </div>
       )}
+
+      {/* ════ POPUP MINI CARTE ════ */}
+{mapPopup && (
+  <div onClick={() => setMapPopup(null)} style={{
+    position:"fixed", inset:0, background:"rgba(10,23,51,0.5)", zIndex:9500,
+    display:"flex", alignItems:"center", justifyContent:"center"
+  }}>
+    <div onClick={e => e.stopPropagation()} style={{
+      background:C.card, borderRadius:14, width:600, height:500,
+      boxShadow:"0 20px 60px rgba(0,0,0,0.3)", display:"flex", flexDirection:"column", overflow:"hidden"
+    }}>
+      <div style={{ padding:"14px 20px", background:C.navy, color:"#fff",
+        display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+        <div>
+          <div style={{ fontSize:14, fontWeight:"700" }}>📍 Position — {mapPopup.id}</div>
+          <div style={{ fontSize:11, color:"#cbd5e1", marginTop:2 }}>
+            Lat: {mapPopup.lat.toFixed(5)} · Lon: {mapPopup.lon.toFixed(5)}
+          </div>
+        </div>
+        <button onClick={() => setMapPopup(null)} style={{
+          background:C.yellow, color:C.navy, border:"none", borderRadius:6,
+          padding:"6px 12px", fontSize:12, fontWeight:"700", cursor:"pointer", fontFamily:"inherit"
+        }}>✕ Fermer</button>
+      </div>
+      <div style={{ flex:1 }}>
+        <MapContainer center={[mapPopup.lat, mapPopup.lon]} zoom={13} style={{ height:"100%", width:"100%" }}>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="© OpenStreetMap" />
+          <TileLayer url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png" attribution="© OpenRailwayMap" opacity={0.7} />
+          <Marker position={[mapPopup.lat, mapPopup.lon]} icon={trainIcon}>
+            <Popup>
+              <div style={{ fontFamily:"'Inter',sans-serif", fontSize:12 }}>
+                <b>🚂 {mapPopup.id}</b><br/>
+                {mapPopup.lat.toFixed(5)}, {mapPopup.lon.toFixed(5)}
+              </div>
+            </Popup>
+          </Marker>
+        </MapContainer>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 }

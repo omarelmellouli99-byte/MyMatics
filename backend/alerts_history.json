@@ -1,0 +1,962 @@
+[
+  {
+    "id": "30e3afbf-4bf8-4f43-b1d5-459600ce8112",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:10:45.585654",
+    "data_index": 330,
+    "data_date": "2025-01-10 00:00:00",
+    "data_heure": "2025-01-10 11:15:29",
+    "conditions": [
+      "temperature > 70.0 (réel: 75.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "2385746d-e778-40f8-93fa-5a399a5c3126",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:11:19.441943",
+    "data_index": 396,
+    "data_date": "2025-01-14 00:00:00",
+    "data_heure": "2025-01-14 14:00:25",
+    "conditions": [
+      "temperature > 70.0 (réel: 75.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "731033c5-d843-4213-b268-9eed1cad96d8",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:12:13.324196",
+    "data_index": 501,
+    "data_date": "2025-01-15 00:00:00",
+    "data_heure": "2025-01-15 01:39:00",
+    "conditions": [
+      "temperature > 70.0 (réel: 75.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "b04580ac-e7b6-41cf-bff2-e802ca418100",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:12:44.045329",
+    "data_index": 561,
+    "data_date": "2025-01-15 00:00:00",
+    "data_heure": "2025-01-15 03:53:46",
+    "conditions": [
+      "temperature > 70.0 (réel: 75.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "d35f0d8b-7fe0-4a80-8d69-d2d49d69c12e",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:13:14.692652",
+    "data_index": 621,
+    "data_date": "2025-01-16 00:00:00",
+    "data_heure": "2025-01-16 02:57:23",
+    "conditions": [
+      "temperature > 70.0 (réel: 80.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "4ab909fa-d67a-49d7-9793-700989630385",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:13:45.384297",
+    "data_index": 681,
+    "data_date": "2025-01-16 00:00:00",
+    "data_heure": "2025-01-16 03:02:54",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "00a1a215-e8e5-4927-bd7d-7feb4cae009b",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:14:16.144709",
+    "data_index": 741,
+    "data_date": "2025-01-16 00:00:00",
+    "data_heure": "2025-01-16 03:08:09",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "ebb49ea7-8756-41db-9bd7-eeb27e6d93ae",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:14:46.903766",
+    "data_index": 801,
+    "data_date": "2025-01-16 00:00:00",
+    "data_heure": "2025-01-16 03:26:38",
+    "conditions": [
+      "temperature > 70.0 (réel: 81.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "24b64195-1780-4db8-8413-6a73c338d6e8",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:15:17.554518",
+    "data_index": 861,
+    "data_date": "2025-01-16 00:00:00",
+    "data_heure": "2025-01-16 03:31:56",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "370fc235-3023-48c4-9fe6-80e2f8bfc11c",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:15:51.224908",
+    "data_index": 927,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 00:36:43",
+    "conditions": [
+      "temperature > 70.0 (réel: 75.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "1dc933b1-1cdf-43a1-94bf-74db89bd882a",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:16:21.878642",
+    "data_index": 987,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 01:33:44",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "3a42afc2-a5b4-4ef9-aa85-b3f39dfb7efa",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:16:52.517916",
+    "data_index": 1047,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 02:27:57",
+    "conditions": [
+      "temperature > 70.0 (réel: 80.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "b52598bb-700c-4e9a-8724-07dbd45f9575",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:17:23.083806",
+    "data_index": 1107,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 03:02:08",
+    "conditions": [
+      "temperature > 70.0 (réel: 81.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "0146bc9c-4fbf-4eb7-a418-ef8028b394c7",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:17:53.677908",
+    "data_index": 1167,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 03:07:20",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "fa77ed07-9272-4fa9-900e-865aa76b761d",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:18:24.286799",
+    "data_index": 1227,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 03:12:29",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "a754f33a-b1f9-408b-b629-e13667114608",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:18:54.897545",
+    "data_index": 1287,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 03:17:35",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "a0e72c23-3491-4e5a-80f4-2b495b95092f",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:19:25.519374",
+    "data_index": 1347,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 03:22:34",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "3a0b804b-f4e2-497d-8c26-f0ef21b32746",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:19:56.123083",
+    "data_index": 1407,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 03:27:33",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "d83dd067-e8e0-4327-ba58-e08c7d4a0a78",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:20:26.782729",
+    "data_index": 1467,
+    "data_date": "2025-01-17 00:00:00",
+    "data_heure": "2025-01-17 03:32:33",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "a964011d-5e1b-4dce-ab28-211bfcc08fa3",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:21:14.581294",
+    "data_index": 1561,
+    "data_date": "2025-01-20 00:00:00",
+    "data_heure": "2025-01-20 16:49:16",
+    "conditions": [
+      "temperature > 70.0 (réel: 76.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "ad138fe0-518b-4e84-afe4-9ca6f82df5a2",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:21:45.185535",
+    "data_index": 1621,
+    "data_date": "2025-01-21 00:00:00",
+    "data_heure": "2025-01-21 03:46:16",
+    "conditions": [
+      "temperature > 70.0 (réel: 77.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "d51a8b19-6bca-4d4c-861c-871b8c347016",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:22:15.810531",
+    "data_index": 1681,
+    "data_date": "2025-01-21 00:00:00",
+    "data_heure": "2025-01-21 03:51:21",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "713d1858-d86d-4465-9454-43f0fd72990f",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:22:46.529719",
+    "data_index": 1741,
+    "data_date": "2025-01-21 00:00:00",
+    "data_heure": "2025-01-21 03:57:17",
+    "conditions": [
+      "temperature > 70.0 (réel: 79.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "c69d79bc-fcc3-4aba-85be-ea8871f7a4bc",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:23:17.191931",
+    "data_index": 1801,
+    "data_date": "2025-01-21 00:00:00",
+    "data_heure": "2025-01-21 04:43:40",
+    "conditions": [
+      "temperature > 70.0 (réel: 75.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "165edcef-2b18-4c0b-a7cf-347f3ef43a1e",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:24:18.692924",
+    "data_index": 1922,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 02:43:36",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "7a88c7ef-88dc-4a3e-b236-b6dfc83424b9",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:24:50.647679",
+    "data_index": 1982,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 03:07:30",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "b581d0a5-b303-4e87-8b63-f9b9937819dc",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:25:21.483082",
+    "data_index": 2042,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 03:12:28",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "1e590acf-0cee-40d0-a73a-df6ea5aef83f",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:25:52.206863",
+    "data_index": 2102,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 03:27:48",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "e76b100f-4330-4a66-8886-15a9eebacc62",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:26:22.931915",
+    "data_index": 2162,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 03:32:44",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "9494c00d-071d-44c2-a71b-4ca4b5bfa368",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:26:53.626626",
+    "data_index": 2222,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 03:39:13",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "b2ae0ad4-687b-459d-8aec-d3cf7aed88d9",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:27:24.321425",
+    "data_index": 2282,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 03:43:57",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "3382e870-2f26-435a-b13e-039eb30ba69f",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:27:57.046181",
+    "data_index": 2342,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 02:22:01",
+    "conditions": [
+      "temperature > 70.0 (réel: 79.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "3e5d2a48-3192-4b9f-b1d6-8efb8e2c2e7a",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:28:27.782623",
+    "data_index": 2402,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 02:27:55",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "35bbf1ea-05b1-40eb-986f-0f536ba27891",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:28:58.508490",
+    "data_index": 2462,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 02:33:01",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "f0a0ce4e-057a-4abf-926b-68771183f804",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:29:29.219477",
+    "data_index": 2522,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 02:38:03",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "0149bd63-a568-4973-8190-dabd3f794036",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:29:59.931295",
+    "data_index": 2582,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 02:42:56",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "fb987b21-06d2-46f5-a26a-ec86f02a4baa",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:30:30.635246",
+    "data_index": 2642,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 02:47:50",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "37b6445b-a23e-4dd0-ad7b-430cd374d02f",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:31:01.345292",
+    "data_index": 2702,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 02:52:49",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "c020143d-6508-4e63-9acc-05c9866373e9",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:31:32.097825",
+    "data_index": 2762,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 03:12:55",
+    "conditions": [
+      "temperature > 70.0 (réel: 79.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "efd8f70b-6a67-4b53-8501-524f5d819a8d",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:32:02.837082",
+    "data_index": 2822,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 03:17:54",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "5df4f8aa-b49a-4d8f-bb8d-9c4e7b2b9e27",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:32:37.772651",
+    "data_index": 2882,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 03:36:20",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "ca676dd1-7996-461a-9491-551f3d77c6b9",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:33:12.530368",
+    "data_index": 2942,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 03:41:22",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "485e64ff-1acf-4619-ac37-d754059edb57",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:33:46.723992",
+    "data_index": 3002,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 03:46:22",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "6228f037-8dcb-4462-a243-4e50fd4e1a83",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:34:21.498505",
+    "data_index": 3062,
+    "data_date": "2025-01-24 00:00:00",
+    "data_heure": "2025-01-24 03:51:18",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "ae27426d-9d4c-4d82-ab77-b0f5ff16398a",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:34:56.302947",
+    "data_index": 3122,
+    "data_date": "2025-01-25 00:00:00",
+    "data_heure": "2025-01-25 03:24:51",
+    "conditions": [
+      "temperature > 70.0 (réel: 80.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "591e70c5-6ae0-4610-8c4e-4ed18839a686",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:35:31.114664",
+    "data_index": 3182,
+    "data_date": "2025-01-25 00:00:00",
+    "data_heure": "2025-01-25 03:29:55",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "5991ccaa-0010-4852-b662-b7552d04eca9",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:36:05.911251",
+    "data_index": 3242,
+    "data_date": "2025-01-25 00:00:00",
+    "data_heure": "2025-01-25 03:35:02",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "95139dd4-ff5f-41da-8751-2ca443fafae5",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:36:36.610760",
+    "data_index": 3302,
+    "data_date": "2025-01-28 00:00:00",
+    "data_heure": "2025-01-28 01:20:59",
+    "conditions": [
+      "temperature > 70.0 (réel: 80.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "53e27c0f-bf38-480c-a2ff-bebda24be64e",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:37:07.342193",
+    "data_index": 3362,
+    "data_date": "2025-01-28 00:00:00",
+    "data_heure": "2025-01-28 01:26:36",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "90bb976b-c7e1-41f8-a171-5323a779208a",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:37:38.215034",
+    "data_index": 3422,
+    "data_date": "2025-01-28 00:00:00",
+    "data_heure": "2025-01-28 01:31:50",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "aa9729a8-d71f-472b-b809-351165a22573",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:38:08.926555",
+    "data_index": 3482,
+    "data_date": "2025-01-28 00:00:00",
+    "data_heure": "2025-01-28 01:37:00",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "1766d9ad-254a-496a-b692-8def35fe7183",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T09:38:39.659829",
+    "data_index": 3542,
+    "data_date": "2025-01-28 00:00:00",
+    "data_heure": "2025-01-28 01:47:31",
+    "conditions": [
+      "temperature > 70.0 (réel: 83.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "4f3f2d9d-f2eb-431b-aa70-4f578f9bba3c",
+    "alert_id": "9cc53e9f-c672-4879-850b-7243f06fc3c9",
+    "alert_name": "Test",
+    "timestamp": "2026-06-08T13:53:05.740793",
+    "data_index": 3954,
+    "data_date": "2025-01-28 00:00:00",
+    "data_heure": "2025-01-28 03:34:36",
+    "conditions": [
+      "temperature > 70.0 (réel: 82.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": false
+  },
+  {
+    "id": "ea9dd751-2e5b-4799-ac42-b0403b91804a",
+    "alert_id": "b73ff941-1196-4073-ab5f-773bd8958475",
+    "alert_name": "Surchauffe Moteur",
+    "timestamp": "2026-06-11T10:12:24.043310",
+    "data_index": 145,
+    "data_date": "2025-01-09 00:00:00",
+    "data_heure": "2025-01-09 09:36:07",
+    "conditions": [
+      "temperature > 50.0 (réel: 76.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": true
+  },
+  {
+    "id": "2d63f177-6863-43ab-8aac-971ffadf3f00",
+    "alert_id": "b73ff941-1196-4073-ab5f-773bd8958475",
+    "alert_name": "Surchauffe Moteur",
+    "timestamp": "2026-06-11T10:12:54.272998",
+    "data_index": 205,
+    "data_date": "2025-01-09 00:00:00",
+    "data_heure": "2025-01-09 11:41:07",
+    "conditions": [
+      "temperature > 50.0 (réel: 75.0)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": true
+  },
+  {
+    "id": "19dfcd98-d3ee-43ba-a42c-5d505c9bdf30",
+    "alert_id": "34658bbc-74af-43fe-ba7f-5c562021614b",
+    "alert_name": "Batterie supérieure à 22V",
+    "timestamp": "2026-06-11T15:53:35.397932",
+    "data_index": 8626,
+    "data_date": "2025-02-11 00:00:00",
+    "data_heure": "2025-02-11 14:20:49",
+    "conditions": [
+      "battery > 22.0 (réel: 25.9)"
+    ],
+    "recipients": [
+      "ELMELLO@colas.com"
+    ],
+    "email_sent": true
+  },
+  {
+    "id": "e205b784-6531-4bdc-b0a6-38c0abc29245",
+    "alert_id": "5af1d26e-a597-4e2d-be8e-759295c61a94",
+    "alert_name": "Batterie élevée",
+    "timestamp": "2026-06-12T15:02:55.005505",
+    "data_index": 2281,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 03:43:53",
+    "conditions": [
+      "battery > 22.0 (réel: 25.0)"
+    ],
+    "recipients": [
+      "GAMZIO@colas.com"
+    ],
+    "email_sent": true
+  },
+  {
+    "id": "bc894285-193c-46a0-8ade-4ef14c684dcd",
+    "alert_id": "bb000f9a-4956-417f-b709-18827923118e",
+    "alert_name": "Batterie haute tension",
+    "timestamp": "2026-06-15T16:27:31.672049",
+    "data_index": 1961,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 03:05:46",
+    "conditions": [
+      "battery > 20.0 (réel: 25.1)"
+    ],
+    "recipients": [
+      "GAMZIO@colas.com"
+    ],
+    "email_sent": true
+  },
+  {
+    "id": "0f43753a-f0d2-4e40-b7cc-9eaf54c7ade4",
+    "alert_id": "bb000f9a-4956-417f-b709-18827923118e",
+    "alert_name": "Batterie haute tension",
+    "timestamp": "2026-06-15T16:28:02.300848",
+    "data_index": 2021,
+    "data_date": "2025-01-23 00:00:00",
+    "data_heure": "2025-01-23 03:10:44",
+    "conditions": [
+      "battery > 20.0 (réel: 25.1)"
+    ],
+    "recipients": [
+      "GAMZIO@colas.com"
+    ],
+    "email_sent": true
+  },
+  {
+    "id": "92b19c88-23dd-4f79-bb64-57b3ddf9b08f",
+    "alert_id": "ee3d6f59-27ed-4d64-a2e5-44b679fe59b3",
+    "alert_name": "Batterie élevée",
+    "timestamp": "2026-06-17T10:23:00.428360",
+    "data_index": 8769,
+    "data_date": "2025-02-12 00:00:00",
+    "data_heure": "2025-02-12 02:04:24",
+    "conditions": [
+      "battery > 22.0 (réel: 25.5)"
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "email_sent": true
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "b73ff941-1196-4073-ab5f-773bd8958475",
+    "name": "Surchauffe Moteur",
+    "conditions": [
+      {
+        "parameter": "temperature",
+        "operator": ">",
+        "value": 50.0
+      }
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "active": false,
+    "created_at": "2026-06-11T10:12:23.663657"
+  },
+  {
+    "id": "34658bbc-74af-43fe-ba7f-5c562021614b",
+    "name": "Batterie supérieure à 22V",
+    "conditions": [
+      {
+        "parameter": "battery",
+        "operator": ">",
+        "value": 22.0
+      }
+    ],
+    "recipients": [
+      "ELMELLO@colas.com"
+    ],
+    "active": false,
+    "created_at": "2026-06-11T15:53:35.087546"
+  },
+  {
+    "id": "ee3d6f59-27ed-4d64-a2e5-44b679fe59b3",
+    "name": "Batterie élevée",
+    "conditions": [
+      {
+        "parameter": "battery",
+        "operator": ">",
+        "value": 22.0
+      }
+    ],
+    "recipients": [
+      "BENHIMT@colas.com"
+    ],
+    "active": false,
+    "created_at": "2026-06-17T10:23:00.261534"
+  }
+]
