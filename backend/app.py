@@ -14,7 +14,7 @@ from datetime import datetime
 
 
 # ── Configuration Gemini ──
-GEMINI_API_KEY = "AQ.Ab8RN6LnoqzU2DDr1cfyBMqhbLdaR8BZJZ37mBLVdQNpkZoDyg"
+GEMINI_API_KEY = ""
 genai.configure(api_key=GEMINI_API_KEY)
 #gemini_model = genai.GenerativeModel('gemini-2.5-flash')
 
